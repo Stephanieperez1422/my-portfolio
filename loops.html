@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loops Assignment</title>
+  <link rel="stylesheet" href="pink-style.css">
+  <style>
+    .loop-block { margin-bottom: 1.25rem; }
+    .loop-title {
+      font-size: 11px; font-weight: 500; color: var(--pink-light);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;
+    }
+    .loop-output {
+      background: var(--pink-50); border: 0.5px solid var(--pink-200);
+      border-radius: var(--radius-sm); padding: 0.85rem 1.1rem;
+      font-size: 13px; color: var(--pink-text); line-height: 1.8;
+      word-break: break-word;
+    }
+    .highlight { color: var(--pink-400); font-weight: 500; font-size: 17px; }
+  </style>
+</head>
+<body>
+  <div class="card" style="max-width: 540px;">
+    <a class="back-link" href="../index.html">← Back to portfolio</a>
+    <h1>Loops Assignment</h1>
+    <p class="subtitle">For, while, and do-while loops in JavaScript</p>
+
+    <div class="loop-block">
+      <div class="loop-title">1. For loop (1 – 18)</div>
+      <div class="loop-output" id="for-loop"></div>
+    </div>
+
+    <div class="loop-block">
+      <div class="loop-title">2. While loop (1 – 27)</div>
+      <div class="loop-output" id="while-loop"></div>
+    </div>
+
+    <div class="loop-block">
+      <div class="loop-title">3. Do-while loop (1 – 15)</div>
+      <div class="loop-output" id="dowhile-loop"></div>
+    </div>
+
+    <div class="loop-block">
+      <div class="loop-title">4. Sum of odd numbers (2 – 21)</div>
+      <div class="loop-output" id="odd-sum"></div>
+    </div>
+
+    <div class="loop-block">
+      <div class="loop-title">5. Product of even numbers (3 – 17)</div>
+      <div class="loop-output" id="even-product"></div>
+    </div>
+
+    <div class="divider"></div>
+    <div><span class="tag">HTML</span><span class="tag">JavaScript</span></div>
+  </div>
+  <footer>Stephanie Perez · CIS Portfolio</footer>
+
+  <script>
+    let out = [];
+    for (let i = 1; i <= 18; i++) out.push(i);
+    document.getElementById('for-loop').textContent = out.join(' · ');
+
+    out = [];
+    let i = 1;
+    while (i <= 27) { out.push(i); i++; }
+    document.getElementById('while-loop').textContent = out.join(' · ');
+
+    out = [];
+    let j = 1;
+    do { out.push(j); j++; } while (j <= 15);
+    document.getElementById('dowhile-loop').textContent = out.join(' · ');
+
+    let sum = 0;
+    for (let k = 2; k <= 21; k++) { if (k % 2 !== 0) sum += k; }
+    document.getElementById('odd-sum').innerHTML = 'Sum = <span class="highlight">' + sum + '</span>';
+
+    let product = 1;
+    for (let m = 3; m <= 17; m++) { if (m % 2 === 0) product *= m; }
+    document.getElementById('even-product').innerHTML = 'Product = <span class="highlight">' + product.toLocaleString() + '</span>';
+  </script>
+</body>
+</html>

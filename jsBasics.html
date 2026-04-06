@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Basics</title>
+  <link rel="stylesheet" href="pink-style.css">
+  <style>
+    .section { margin-bottom: 1.5rem; }
+    .section-title {
+      font-size: 11px; font-weight: 500; color: var(--pink-light);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem;
+    }
+    .output-box {
+      background: var(--pink-50); border: 0.5px solid var(--pink-200);
+      border-radius: var(--radius-sm); padding: 1rem 1.25rem;
+      font-size: 14px; color: var(--pink-text); line-height: 1.9;
+    }
+    .math-row { display: flex; justify-content: space-between; }
+    .math-eq { color: var(--pink-muted); }
+    .math-ans { font-weight: 500; color: var(--pink-400); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <a class="back-link" href="../index.html">← Back to portfolio</a>
+    <h1>JS Basics</h1>
+    <p class="subtitle">Variables, DOM manipulation, and type concepts</p>
+
+    <div class="section">
+      <div class="section-title">Presentation</div>
+      <div class="output-box" id="presentation"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Mini calculator</div>
+      <div class="output-box" id="calculator"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Values prediction</div>
+      <div class="output-box" id="values"></div>
+    </div>
+
+    <div class="divider"></div>
+    <div><span class="tag">HTML</span><span class="tag">JavaScript</span></div>
+  </div>
+  <footer>Stephanie Perez · CIS Portfolio</footer>
+
+  <script>
+    let name = "Stephanie";
+    let age = 23;
+    document.getElementById("presentation").innerHTML =
+      "My name is <strong>" + name + "</strong> and I am <strong>" + age + "</strong> years old.";
+
+    document.getElementById("calculator").innerHTML =
+      '<div class="math-row"><span class="math-eq">6 + 3</span><span class="math-ans">= ' + (6+3) + '</span></div>' +
+      '<div class="math-row"><span class="math-eq">6 − 3</span><span class="math-ans">= ' + (6-3) + '</span></div>' +
+      '<div class="math-row"><span class="math-eq">6 × 3</span><span class="math-ans">= ' + (6*3) + '</span></div>' +
+      '<div class="math-row"><span class="math-eq">6 ÷ 3</span><span class="math-ans">= ' + (6/3) + '</span></div>';
+
+    document.getElementById("values").innerHTML =
+      '<div class="math-row"><span class="math-eq">4 + 5 (numbers)</span><span class="math-ans">= ' + (4+5) + '</span></div>' +
+      '<div class="math-row"><span class="math-eq">"4" + "5" (strings)</span><span class="math-ans">= ' + ("4"+"5") + '</span></div>';
+  </script>
+</body>
+</html>

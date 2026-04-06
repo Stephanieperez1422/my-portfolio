@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stephanie Perez · Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --pink-50: #fff5f8;
+      --pink-100: #fce4ec;
+      --pink-200: #f8bbd0;
+      --pink-300: #f48fb1;
+      --pink-400: #ec407a;
+      --pink-text: #7e4f73;
+      --pink-muted: #b07ab5;
+      --pink-light: #c48bbf;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: linear-gradient(160deg, #fce4ec 0%, #f3e5f5 60%, #e8eaf6 100%);
+      min-height: 100vh;
+      color: var(--pink-text);
+      padding: 2.5rem 1.25rem 3rem;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .avatar {
+      width: 74px; height: 74px; border-radius: 50%;
+      background: linear-gradient(135deg, #f48fb1, #ce93d8);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; margin: 0 auto 1.1rem; color: white; font-weight: 500;
+      font-family: 'Playfair Display', serif;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px; font-weight: 500;
+      color: var(--pink-text); margin-bottom: 0.4rem;
+    }
+    .hero p { font-size: 14px; color: var(--pink-muted); }
+
+    /* Section label */
+    .section-label {
+      font-size: 11px; font-weight: 500; color: var(--pink-light);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 1rem; padding-left: 2px;
+    }
+
+    /* Featured card */
+    .featured {
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid var(--pink-200);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      transition: border-color 0.2s;
+    }
+    .featured:hover { border-color: var(--pink-300); }
+    .featured-badge {
+      display: inline-block; font-size: 10px; font-weight: 500;
+      padding: 3px 11px; border-radius: 20px;
+      background: var(--pink-300); color: white;
+      margin-bottom: 1rem; letter-spacing: 0.04em;
+    }
+    .featured-top { display: flex; align-items: flex-start; gap: 1rem; }
+    .featured-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: var(--pink-50); border: 0.5px solid var(--pink-200);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; flex-shrink: 0;
+    }
+    .featured-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 500; color: var(--pink-text); margin-bottom: 0.3rem;
+    }
+    .featured-desc { font-size: 13px; color: var(--pink-muted); line-height: 1.65; }
+    .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+    .pill {
+      font-size: 11px; padding: 4px 11px; border-radius: 20px;
+      background: var(--pink-100); color: var(--pink-text); font-weight: 500;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 0.75rem; }
+    .tag {
+      font-size: 10px; font-weight: 500; padding: 2px 9px;
+      border-radius: 20px; background: #f3e5f5; color: var(--pink-text);
+    }
+    .card-link {
+      display: block; margin-top: 1rem; font-size: 12px; color: var(--pink-muted);
+      text-decoration: none; border-top: 0.5px solid var(--pink-100);
+      padding-top: 0.85rem; transition: color 0.2s;
+    }
+    .card-link:hover { color: var(--pink-text); }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px; margin-bottom: 2.5rem;
+    }
+    .card {
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+      border: 0.5px solid var(--pink-200);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .card:hover { border-color: var(--pink-300); background: rgba(255,255,255,0.95); }
+    .card.wip { opacity: 0.82; border-style: dashed; }
+    .accent { position: absolute; top: 0; left: 0; right: 0; height: 4px; border-radius: 16px 16px 0 0; }
+    .a1 { background: linear-gradient(90deg, #f48fb1, #ce93d8); }
+    .a2 { background: linear-gradient(90deg, #ce93d8, #9fa8da); }
+    .a3 { background: linear-gradient(90deg, #ffb3b3, #ffd0a0); }
+    .a4 { background: linear-gradient(90deg, #a5d6a7, #80cbc4); }
+    .a5 { background: linear-gradient(90deg, #80cbc4, #81d4fa); }
+    .card-icon { font-size: 20px; margin: 0.4rem 0 0.65rem; }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px; font-weight: 500; color: var(--pink-text); margin-bottom: 0.35rem;
+    }
+    .card p { font-size: 12px; color: var(--pink-muted); line-height: 1.6; flex: 1; margin-bottom: 0.6rem; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 0.6rem; }
+    .ctag {
+      font-size: 10px; font-weight: 500; padding: 2px 8px;
+      border-radius: 20px; background: var(--pink-100); color: var(--pink-text);
+    }
+    .wip-tag {
+      font-size: 10px; font-weight: 500; padding: 2px 8px;
+      border-radius: 20px; background: #fff3e0; color: #bf7b3a;
+    }
+    .clink {
+      display: block; font-size: 11px; color: var(--pink-muted);
+      text-decoration: none; border-top: 0.5px solid var(--pink-100);
+      padding-top: 0.6rem; margin-top: auto; transition: color 0.2s;
+    }
+    .clink:hover { color: var(--pink-text); }
+    .clink.wip-link { color: #d4a86a; }
+
+    footer {
+      text-align: center; font-size: 12px;
+      color: var(--pink-light); padding-top: 1rem;
+      border-top: 0.5px solid var(--pink-200);
+    }
+
+    @media (max-width: 480px) {
+      .featured-top { flex-direction: column; }
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="avatar">S</div>
+    <h1>Stephanie's project portfolio</h1>
+    <p>A collection of websites and projects I've built</p>
+  </div>
+
+  <p class="section-label">Featured project</p>
+
+  <div class="featured">
+    <div class="featured-badge">⭐ Featured</div>
+    <div class="featured-top">
+      <div class="featured-icon">🏋️</div>
+      <div>
+        <div class="featured-title">The Performance Plate</div>
+        <div class="featured-desc">A full multi-page fitness and nutrition website covering muscle building, fat loss, and nutrition basics. Includes four working calculators (TDEE, protein, macros, BMI), a responsive navbar, accordion sections, fade-in animations, and a contact form.</div>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill">index.html</span>
+      <span class="pill">choose-your-path.html</span>
+      <span class="pill">buildmuscle.html</span>
+      <span class="pill">losefat.html</span>
+      <span class="pill">nutrition.html</span>
+      <span class="pill">tools.html</span>
+      <span class="pill">contact.html</span>
+    </div>
+    <div class="tags">
+      <span class="tag">HTML</span>
+      <span class="tag">CSS</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">Responsive</span>
+      <span class="tag">Multi-page</span>
+      <span class="tag">Calculators</span>
+    </div>
+    <a class="card-link" href="#">View project ↗</a>
+  </div>
+
+  <p class="section-label">Other projects</p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="accent a1"></div>
+      <div class="card-icon">🪙</div>
+      <h3>Coin toss simulation</h3>
+      <p>Simulates 100 coin flips and displays heads vs. tails with a visual bar chart.</p>
+      <div class="card-tags">
+        <span class="ctag">JavaScript</span>
+        <span class="ctag">HTML</span>
+      </div>
+      <a class="clink" href="https://stephanieperez1422.github.io/Coin-Toss-Simulation/" target="_blank">View project ↗</a>
+    </div>
+
+    <div class="card">
+      <div class="accent a2"></div>
+      <div class="card-icon">🎲</div>
+      <h3>Random values generator</h3>
+      <p>Generates random numbers across three ranges (1–27, 1–178, 1–600).</p>
+      <div class="card-tags">
+        <span class="ctag">JavaScript</span>
+        <span class="ctag">HTML</span>
+      </div>
+      <a class="clink" href="projects/randomValues.html" target="_blank">View project ↗</a>
+    </div>
+
+    <div class="card">
+      <div class="accent a3"></div>
+      <div class="card-icon">💻</div>
+      <h3>JS basics</h3>
+      <p>Variables, DOM manipulation, a mini calculator, and type concepts.</p>
+      <div class="card-tags">
+        <span class="ctag">HTML</span>
+        <span class="ctag">JavaScript</span>
+      </div>
+      <a class="clink" href="https://stephanieperez1422.github.io/JS-Presentation-Assignment/" target="_blank">View project ↗</a>
+    </div>
+
+    <div class="card">
+      <div class="accent a4"></div>
+      <div class="card-icon">🔁</div>
+      <h3>Loops assignment</h3>
+      <p>Demonstrates for, while, and do-while loops with sum and product calculations.</p>
+      <div class="card-tags">
+        <span class="ctag">HTML</span>
+        <span class="ctag">JavaScript</span>
+      </div>
+      <a class="clink" href="projects/loops.html" target="_blank">View project ↗</a>
+    </div>
+
+    <div class="card wip">
+      <div class="accent a5"></div>
+      <div class="card-icon">🏊</div>
+      <h3>Private swim lessons</h3>
+      <p>Responsive navbar with dropdown for a swim school. Full page coming soon.</p>
+      <div class="card-tags">
+        <span class="ctag">HTML</span>
+        <span class="ctag">CSS</span>
+        <span class="wip-tag">🚧 In progress</span>
+      </div>
+      <a class="clink wip-link" href="https://stephanieperez1422.github.io/Swimming-Dream-/" target="_blank">View project ↗ · In progress</a>
+    </div>
+
+  </div>
+
+  <footer>made with love · stephanie's portfolio</footer>
+
+</body>
+</html>

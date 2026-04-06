@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Values Generator</title>
+  <link rel="stylesheet" href="pink-style.css">
+  <style>
+    .val-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 0; border-bottom: 0.5px solid var(--pink-100);
+    }
+    .val-row:last-child { border-bottom: none; }
+    .val-label { font-size: 13px; color: var(--pink-muted); }
+    .val-num {
+      font-size: 26px; font-weight: 500; color: var(--pink-400);
+      transition: transform 0.2s;
+    }
+    .val-num.pop { transform: scale(1.25); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <a class="back-link" href="../index.html">← Back to portfolio</a>
+    <h1>Random Values</h1>
+    <p class="subtitle">Generates random numbers across three different ranges</p>
+
+    <div class="result-box">
+      <div class="label">Generated numbers</div>
+      <div class="val-row">
+        <span class="val-label">Range 1 – 27</span>
+        <span class="val-num" id="v1">—</span>
+      </div>
+      <div class="val-row">
+        <span class="val-label">Range 1 – 178</span>
+        <span class="val-num" id="v2">—</span>
+      </div>
+      <div class="val-row">
+        <span class="val-label">Range 1 – 600</span>
+        <span class="val-num" id="v3">—</span>
+      </div>
+    </div>
+
+    <button onclick="generate()">Generate 🎲</button>
+
+    <div class="divider"></div>
+    <div>
+      <span class="tag">JavaScript</span>
+      <span class="tag">HTML</span>
+      <span class="tag">Originally PHP</span>
+    </div>
+  </div>
+  <footer>Stephanie Perez · CIS Portfolio</footer>
+
+  <script>
+    function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+    function pop(id) {
+      const el = document.getElementById(id);
+      el.classList.remove('pop');
+      void el.offsetWidth;
+      el.classList.add('pop');
+      setTimeout(() => el.classList.remove('pop'), 200);
+    }
+    function generate() {
+      document.getElementById('v1').textContent = rand(1, 27);
+      document.getElementById('v2').textContent = rand(1, 178);
+      document.getElementById('v3').textContent = rand(1, 600);
+      ['v1','v2','v3'].forEach(pop);
+    }
+  </script>
+</body>
+</html>

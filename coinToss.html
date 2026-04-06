@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coin Toss Simulation</title>
+  <link rel="stylesheet" href="pink-style.css">
+  <style>
+    .bar-row { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+    .bar-label { font-size: 13px; color: var(--pink-muted); width: 48px; }
+    .bar-track { flex: 1; background: var(--pink-100); border-radius: 20px; height: 10px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 20px; transition: width 0.6s ease; }
+    .bar-heads { background: linear-gradient(90deg, #f48fb1, #ec407a); }
+    .bar-tails { background: linear-gradient(90deg, #ce93d8, #ab47bc); }
+    .bar-count { font-size: 13px; font-weight: 500; color: var(--pink-text); width: 28px; text-align: right; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <a class="back-link" href="../index.html">← Back to portfolio</a>
+    <h1>Coin Toss</h1>
+    <p class="subtitle">Simulates 100 coin flips and counts the results</p>
+
+    <div class="result-box" id="result-box">
+      <div class="label">Results</div>
+      <div id="output" style="color: var(--pink-muted); font-size: 14px;">Press the button to run the simulation.</div>
+    </div>
+
+    <div id="bars" style="display:none; margin: 0 0 1.5rem;">
+      <div class="bar-row">
+        <span class="bar-label">Heads</span>
+        <div class="bar-track"><div class="bar-fill bar-heads" id="bar-heads" style="width:0%"></div></div>
+        <span class="bar-count" id="count-heads">0</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Tails</span>
+        <div class="bar-track"><div class="bar-fill bar-tails" id="bar-tails" style="width:0%"></div></div>
+        <span class="bar-count" id="count-tails">0</span>
+      </div>
+    </div>
+
+    <button onclick="runSimulation()">Toss 100 Coins 🪙</button>
+
+    <div class="divider"></div>
+    <div>
+      <span class="tag">JavaScript</span>
+      <span class="tag">HTML</span>
+      <span class="tag">Originally PHP</span>
+    </div>
+  </div>
+  <footer>Stephanie Perez · CIS Portfolio</footer>
+
+  <script>
+    function runSimulation() {
+      let heads = 0, tails = 0;
+      for (let i = 0; i < 100; i++) {
+        Math.random() < 0.5 ? heads++ : tails++;
+      }
+      document.getElementById('output').innerHTML =
+        '<span style="font-size:22px;font-weight:500;color:#ec407a;">' + heads + '</span> heads &nbsp;·&nbsp; <span style="font-size:22px;font-weight:500;color:#ab47bc;">' + tails + '</span> tails';
+      document.getElementById('bars').style.display = 'block';
+      document.getElementById('bar-heads').style.width = heads + '%';
+      document.getElementById('bar-tails').style.width = tails + '%';
+      document.getElementById('count-heads').textContent = heads;
+      document.getElementById('count-tails').textContent = tails;
+    }
+  </script>
+</body>
+</html>
