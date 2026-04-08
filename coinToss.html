@@ -4,66 +4,255 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coin Toss Simulation</title>
-  <link rel="stylesheet" href="pink-style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    .bar-row { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
-    .bar-label { font-size: 13px; color: var(--pink-muted); width: 48px; }
-    .bar-track { flex: 1; background: var(--pink-100); border-radius: 20px; height: 10px; overflow: hidden; }
-    .bar-fill { height: 100%; border-radius: 20px; transition: width 0.6s ease; }
-    .bar-heads { background: linear-gradient(90deg, #f48fb1, #ec407a); }
-    .bar-tails { background: linear-gradient(90deg, #ce93d8, #ab47bc); }
-    .bar-count { font-size: 13px; font-weight: 500; color: var(--pink-text); width: 28px; text-align: right; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink-50: #fff5f8;
+      --pink-100: #fce4ec;
+      --pink-200: #f8bbd0;
+      --pink-300: #f48fb1;
+      --pink-400: #ec407a;
+      --pink-text: #7e4f73;
+      --pink-muted: #b07ab5;
+      --pink-light: #c48bbf;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: linear-gradient(160deg, #fce4ec 0%, #f3e5f5 60%, #e8eaf6 100%);
+      min-height: 100vh;
+      color: var(--pink-text);
+      padding: 2.5rem 1.25rem 3rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+    }
+    .avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, #f48fb1, #ce93d8);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; color: white; font-weight: 500;
+      font-family: 'Playfair Display', serif;
+      text-decoration: none;
+    }
+    .back-link {
+      font-size: 12px;
+      color: var(--pink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--pink-text); }
+
+    /* MAIN */
+    main {
+      max-width: 580px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    .section-label {
+      font-size: 11px; font-weight: 500; color: var(--pink-light);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.75rem; padding-left: 2px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 500;
+      color: var(--pink-text);
+      margin-bottom: 0.35rem;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: var(--pink-muted);
+      margin-bottom: 2rem;
+    }
+
+    /* CARD */
+    .card {
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid var(--pink-200);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--pink-300); }
+
+    /* RESULT BOXES */
+    .results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .result-box {
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .result-box.heads {
+      background: var(--pink-50);
+      border: 0.5px solid var(--pink-200);
+    }
+    .result-box.tails {
+      background: #f3e5f5;
+      border: 0.5px solid #e1bee7;
+    }
+    .result-box .emoji { font-size: 1.6rem; margin-bottom: 0.4rem; }
+    .result-box .label {
+      font-size: 10px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--pink-muted);
+      margin-bottom: 0.3rem;
+    }
+    .result-box .count {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 500;
+      color: var(--pink-text);
+    }
+
+    /* BAR */
+    .bar-wrap { margin-bottom: 1.5rem; }
+    .bar-label {
+      display: flex; justify-content: space-between;
+      font-size: 11px; color: var(--pink-muted);
+      margin-bottom: 6px;
+    }
+    .bar-track {
+      height: 8px;
+      background: var(--pink-100);
+      border-radius: 99px;
+      overflow: hidden;
+      display: flex;
+    }
+    .bar-heads {
+      height: 100%;
+      background: linear-gradient(90deg, #f48fb1, #ce93d8);
+      transition: width 0.5s ease;
+    }
+    .bar-tails {
+      height: 100%;
+      background: linear-gradient(90deg, #ce93d8, #9fa8da);
+      transition: width 0.5s ease;
+    }
+
+    /* BUTTON */
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: var(--radius-sm);
+      border: 0.5px solid var(--pink-200);
+      background: var(--pink-50);
+      color: var(--pink-text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    button:hover {
+      background: var(--pink-100);
+      border-color: var(--pink-300);
+    }
+
+    /* TAGS */
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag {
+      font-size: 10px; font-weight: 500; padding: 2px 9px;
+      border-radius: 20px; background: #f3e5f5; color: var(--pink-text);
+    }
+
+    footer {
+      text-align: center; font-size: 12px;
+      color: var(--pink-light); padding-top: 2rem;
+      border-top: 0.5px solid var(--pink-200);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 400px) {
+      .results { grid-template-columns: 1fr 1fr; }
+    }
   </style>
 </head>
 <body>
+
+<nav>
+  <a href="https://stephanieperez1422.github.io/my-portfolio/" class="avatar">S</a>
+  <a href="https://stephanieperez1422.github.io/my-portfolio/" class="back-link">← back to portfolio</a>
+</nav>
+
+<main>
+  <p class="section-label">🪙 simulation</p>
+  <h1>Coin Toss Simulation</h1>
+  <p class="subtitle">Simulates 100 coin flips and shows the heads vs. tails breakdown.</p>
+
   <div class="card">
-    <a class="back-link" href="../index.html">← Back to portfolio</a>
-    <h1>Coin Toss</h1>
-    <p class="subtitle">Simulates 100 coin flips and counts the results</p>
-
-    <div class="result-box" id="result-box">
-      <div class="label">Results</div>
-      <div id="output" style="color: var(--pink-muted); font-size: 14px;">Press the button to run the simulation.</div>
-    </div>
-
-    <div id="bars" style="display:none; margin: 0 0 1.5rem;">
-      <div class="bar-row">
-        <span class="bar-label">Heads</span>
-        <div class="bar-track"><div class="bar-fill bar-heads" id="bar-heads" style="width:0%"></div></div>
-        <span class="bar-count" id="count-heads">0</span>
+    <div class="results">
+      <div class="result-box heads">
+        <div class="emoji">🪙</div>
+        <div class="label">Heads</div>
+        <div class="count" id="heads-count">—</div>
       </div>
-      <div class="bar-row">
-        <span class="bar-label">Tails</span>
-        <div class="bar-track"><div class="bar-fill bar-tails" id="bar-tails" style="width:0%"></div></div>
-        <span class="bar-count" id="count-tails">0</span>
+      <div class="result-box tails">
+        <div class="emoji">🌀</div>
+        <div class="label">Tails</div>
+        <div class="count" id="tails-count">—</div>
       </div>
     </div>
 
-    <button onclick="runSimulation()">Toss 100 Coins 🪙</button>
-
-    <div class="divider"></div>
-    <div>
-      <span class="tag">JavaScript</span>
-      <span class="tag">HTML</span>
-      <span class="tag">Originally PHP</span>
+    <div class="bar-wrap">
+      <div class="bar-label">
+        <span id="heads-pct">Heads —%</span>
+        <span id="tails-pct">Tails —%</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-heads" id="bar-heads" style="width:50%"></div>
+        <div class="bar-tails" id="bar-tails" style="width:50%"></div>
+      </div>
     </div>
+
+    <button onclick="runToss()">🔁 Toss Again</button>
   </div>
-  <footer>Stephanie Perez · CIS Portfolio</footer>
 
-  <script>
-    function runSimulation() {
-      let heads = 0, tails = 0;
-      for (let i = 0; i < 100; i++) {
-        Math.random() < 0.5 ? heads++ : tails++;
-      }
-      document.getElementById('output').innerHTML =
-        '<span style="font-size:22px;font-weight:500;color:#ec407a;">' + heads + '</span> heads &nbsp;·&nbsp; <span style="font-size:22px;font-weight:500;color:#ab47bc;">' + tails + '</span> tails';
-      document.getElementById('bars').style.display = 'block';
-      document.getElementById('bar-heads').style.width = heads + '%';
-      document.getElementById('bar-tails').style.width = tails + '%';
-      document.getElementById('count-heads').textContent = heads;
-      document.getElementById('count-tails').textContent = tails;
+  <div class="tags">
+    <span class="tag">JavaScript</span>
+    <span class="tag">HTML</span>
+    <span class="tag">Math.random()</span>
+  </div>
+</main>
+
+<footer>made with love · stephanie's portfolio</footer>
+
+<script>
+  function runToss() {
+    let heads = 0, tails = 0;
+    for (let i = 0; i < 100; i++) {
+      Math.floor(Math.random() * 2) === 0 ? heads++ : tails++;
     }
-  </script>
+    document.getElementById('heads-count').textContent = heads;
+    document.getElementById('tails-count').textContent = tails;
+    document.getElementById('bar-heads').style.width = heads + '%';
+    document.getElementById('bar-tails').style.width = tails + '%';
+    document.getElementById('heads-pct').textContent = `Heads ${heads}%`;
+    document.getElementById('tails-pct').textContent = `Tails ${tails}%`;
+  }
+
+  runToss();
+</script>
+
 </body>
 </html>

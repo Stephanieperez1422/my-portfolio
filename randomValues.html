@@ -4,69 +4,220 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random Values Generator</title>
-  <link rel="stylesheet" href="pink-style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    .val-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.75rem 0; border-bottom: 0.5px solid var(--pink-100);
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink-50: #fff5f8;
+      --pink-100: #fce4ec;
+      --pink-200: #f8bbd0;
+      --pink-300: #f48fb1;
+      --pink-text: #7e4f73;
+      --pink-muted: #b07ab5;
+      --pink-light: #c48bbf;
+      --radius: 16px;
+      --radius-sm: 10px;
     }
-    .val-row:last-child { border-bottom: none; }
-    .val-label { font-size: 13px; color: var(--pink-muted); }
-    .val-num {
-      font-size: 26px; font-weight: 500; color: var(--pink-400);
-      transition: transform 0.2s;
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: linear-gradient(160deg, #fce4ec 0%, #f3e5f5 60%, #e8eaf6 100%);
+      min-height: 100vh;
+      color: var(--pink-text);
+      padding: 2.5rem 1.25rem 3rem;
+      display: flex;
+      flex-direction: column;
     }
-    .val-num.pop { transform: scale(1.25); }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+    }
+    .avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, #f48fb1, #ce93d8);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; color: white; font-weight: 500;
+      font-family: 'Playfair Display', serif;
+      text-decoration: none;
+    }
+    .back-link {
+      font-size: 12px;
+      color: var(--pink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--pink-text); }
+
+    /* MAIN */
+    main {
+      max-width: 580px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    .section-label {
+      font-size: 11px; font-weight: 500; color: var(--pink-light);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.75rem; padding-left: 2px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 500;
+      color: var(--pink-text);
+      margin-bottom: 0.35rem;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: var(--pink-muted);
+      margin-bottom: 2rem;
+    }
+
+    /* CARD */
+    .card {
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid var(--pink-200);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--pink-300); }
+
+    /* NUMBER ROWS */
+    .number-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .number-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.2rem;
+      border-radius: var(--radius-sm);
+      border: 0.5px solid var(--pink-200);
+    }
+    .number-row.r1 { background: var(--pink-50); }
+    .number-row.r2 { background: #f3e5f5; border-color: #e1bee7; }
+    .number-row.r3 { background: #ede7f6; border-color: #d1c4e9; }
+
+    .row-info .row-label {
+      font-size: 11px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--pink-muted);
+      margin-bottom: 2px;
+    }
+    .row-info .row-range {
+      font-size: 11px;
+      color: var(--pink-light);
+    }
+    .row-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 500;
+      color: var(--pink-text);
+    }
+
+    /* BUTTON */
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: var(--radius-sm);
+      border: 0.5px solid var(--pink-200);
+      background: var(--pink-50);
+      color: var(--pink-text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    button:hover {
+      background: var(--pink-100);
+      border-color: var(--pink-300);
+    }
+
+    /* TAGS */
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag {
+      font-size: 10px; font-weight: 500; padding: 2px 9px;
+      border-radius: 20px; background: #f3e5f5; color: var(--pink-text);
+    }
+
+    footer {
+      text-align: center; font-size: 12px;
+      color: var(--pink-light); padding-top: 2rem;
+      border-top: 0.5px solid var(--pink-200);
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
+
+<nav>
+  <a href="https://stephanieperez1422.github.io/my-portfolio/" class="avatar">S</a>
+  <a href="https://stephanieperez1422.github.io/my-portfolio/" class="back-link">← back to portfolio</a>
+</nav>
+
+<main>
+  <p class="section-label">🎲 generator</p>
+  <h1>Random Values Generator</h1>
+  <p class="subtitle">Generates a random number across three different ranges.</p>
+
   <div class="card">
-    <a class="back-link" href="../index.html">← Back to portfolio</a>
-    <h1>Random Values</h1>
-    <p class="subtitle">Generates random numbers across three different ranges</p>
-
-    <div class="result-box">
-      <div class="label">Generated numbers</div>
-      <div class="val-row">
-        <span class="val-label">Range 1 – 27</span>
-        <span class="val-num" id="v1">—</span>
+    <div class="number-list">
+      <div class="number-row r1">
+        <div class="row-info">
+          <div class="row-label">Range A</div>
+          <div class="row-range">1 – 27</div>
+        </div>
+        <div class="row-value" id="num1">—</div>
       </div>
-      <div class="val-row">
-        <span class="val-label">Range 1 – 178</span>
-        <span class="val-num" id="v2">—</span>
+      <div class="number-row r2">
+        <div class="row-info">
+          <div class="row-label">Range B</div>
+          <div class="row-range">1 – 178</div>
+        </div>
+        <div class="row-value" id="num2">—</div>
       </div>
-      <div class="val-row">
-        <span class="val-label">Range 1 – 600</span>
-        <span class="val-num" id="v3">—</span>
+      <div class="number-row r3">
+        <div class="row-info">
+          <div class="row-label">Range C</div>
+          <div class="row-range">1 – 600</div>
+        </div>
+        <div class="row-value" id="num3">—</div>
       </div>
     </div>
 
-    <button onclick="generate()">Generate 🎲</button>
-
-    <div class="divider"></div>
-    <div>
-      <span class="tag">JavaScript</span>
-      <span class="tag">HTML</span>
-      <span class="tag">Originally PHP</span>
-    </div>
+    <button onclick="generate()">🔀 Generate New Numbers</button>
   </div>
-  <footer>Stephanie Perez · CIS Portfolio</footer>
 
-  <script>
-    function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-    function pop(id) {
-      const el = document.getElementById(id);
-      el.classList.remove('pop');
-      void el.offsetWidth;
-      el.classList.add('pop');
-      setTimeout(() => el.classList.remove('pop'), 200);
-    }
-    function generate() {
-      document.getElementById('v1').textContent = rand(1, 27);
-      document.getElementById('v2').textContent = rand(1, 178);
-      document.getElementById('v3').textContent = rand(1, 600);
-      ['v1','v2','v3'].forEach(pop);
-    }
-  </script>
+  <div class="tags">
+    <span class="tag">JavaScript</span>
+    <span class="tag">HTML</span>
+    <span class="tag">Math.random()</span>
+  </div>
+</main>
+
+<footer>made with love · stephanie's portfolio</footer>
+
+<script>
+  function generate() {
+    document.getElementById('num1').textContent = Math.floor(Math.random() * 27) + 1;
+    document.getElementById('num2').textContent = Math.floor(Math.random() * 178) + 1;
+    document.getElementById('num3').textContent = Math.floor(Math.random() * 600) + 1;
+  }
+
+  generate();
+</script>
+
 </body>
 </html>

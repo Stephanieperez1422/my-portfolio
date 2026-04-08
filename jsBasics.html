@@ -4,64 +4,251 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JS Basics</title>
-  <link rel="stylesheet" href="pink-style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    .section { margin-bottom: 1.5rem; }
-    .section-title {
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink-50: #fff5f8;
+      --pink-100: #fce4ec;
+      --pink-200: #f8bbd0;
+      --pink-300: #f48fb1;
+      --pink-text: #7e4f73;
+      --pink-muted: #b07ab5;
+      --pink-light: #c48bbf;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: linear-gradient(160deg, #fce4ec 0%, #f3e5f5 60%, #e8eaf6 100%);
+      min-height: 100vh;
+      color: var(--pink-text);
+      padding: 2.5rem 1.25rem 3rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+    }
+    .avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, #f48fb1, #ce93d8);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; color: white; font-weight: 500;
+      font-family: 'Playfair Display', serif;
+      text-decoration: none;
+    }
+    .back-link {
+      font-size: 12px;
+      color: var(--pink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--pink-text); }
+
+    /* MAIN */
+    main {
+      max-width: 580px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    .section-label {
       font-size: 11px; font-weight: 500; color: var(--pink-light);
-      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.75rem; padding-left: 2px;
     }
-    .output-box {
-      background: var(--pink-50); border: 0.5px solid var(--pink-200);
-      border-radius: var(--radius-sm); padding: 1rem 1.25rem;
-      font-size: 14px; color: var(--pink-text); line-height: 1.9;
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 500;
+      color: var(--pink-text);
+      margin-bottom: 0.35rem;
     }
-    .math-row { display: flex; justify-content: space-between; }
-    .math-eq { color: var(--pink-muted); }
-    .math-ans { font-weight: 500; color: var(--pink-400); }
+    .subtitle {
+      font-size: 13px;
+      color: var(--pink-muted);
+      margin-bottom: 2rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid var(--pink-200);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--pink-300); }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .card-icon {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--pink-50);
+      border: 0.5px solid var(--pink-200);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px; font-weight: 500;
+      color: var(--pink-text);
+    }
+
+    /* OUTPUT ROWS */
+    .output-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 0.9rem;
+      border-radius: var(--radius-sm);
+      background: var(--pink-50);
+      border: 0.5px solid var(--pink-200);
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    .output-row:last-child { margin-bottom: 0; }
+    .output-label { color: var(--pink-muted); font-size: 12px; }
+    .output-value { font-weight: 500; color: var(--pink-text); }
+
+    /* CONCEPT NOTE */
+    .concept {
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-sm);
+      background: #f3e5f5;
+      border: 0.5px solid #e1bee7;
+      font-size: 12px;
+      color: var(--pink-muted);
+      line-height: 1.65;
+    }
+    .concept strong { color: var(--pink-text); font-weight: 500; }
+
+    /* TAGS */
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+    .tag {
+      font-size: 10px; font-weight: 500; padding: 2px 9px;
+      border-radius: 20px; background: #f3e5f5; color: var(--pink-text);
+    }
+
+    footer {
+      text-align: center; font-size: 12px;
+      color: var(--pink-light); padding-top: 2rem;
+      border-top: 0.5px solid var(--pink-200);
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
+
+<nav>
+  <a href="https://stephanieperez1422.github.io/my-portfolio/" class="avatar">S</a>
+  <a href="https://stephanieperez1422.github.io/my-portfolio/" class="back-link">← back to portfolio</a>
+</nav>
+
+<main>
+  <p class="section-label">💻 js basics</p>
+  <h1>JS Basics</h1>
+  <p class="subtitle">Variables, DOM manipulation, a mini calculator, and type concepts.</p>
+
+  <!-- Presentation -->
   <div class="card">
-    <a class="back-link" href="../index.html">← Back to portfolio</a>
-    <h1>JS Basics</h1>
-    <p class="subtitle">Variables, DOM manipulation, and type concepts</p>
-
-    <div class="section">
-      <div class="section-title">Presentation</div>
-      <div class="output-box" id="presentation"></div>
+    <div class="card-header">
+      <div class="card-icon">👋</div>
+      <div class="card-title">Presentation</div>
     </div>
-
-    <div class="section">
-      <div class="section-title">Mini calculator</div>
-      <div class="output-box" id="calculator"></div>
+    <div class="output-row">
+      <span class="output-label">Output</span>
+      <span class="output-value" id="presentation"></span>
     </div>
-
-    <div class="section">
-      <div class="section-title">Values prediction</div>
-      <div class="output-box" id="values"></div>
-    </div>
-
-    <div class="divider"></div>
-    <div><span class="tag">HTML</span><span class="tag">JavaScript</span></div>
   </div>
-  <footer>Stephanie Perez · CIS Portfolio</footer>
 
-  <script>
-    let name = "Stephanie";
-    let age = 23;
-    document.getElementById("presentation").innerHTML =
-      "My name is <strong>" + name + "</strong> and I am <strong>" + age + "</strong> years old.";
+  <!-- Calculator -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🧮</div>
+      <div class="card-title">Minimalistic Calculator</div>
+    </div>
+    <div id="calculator-rows"></div>
+  </div>
 
-    document.getElementById("calculator").innerHTML =
-      '<div class="math-row"><span class="math-eq">6 + 3</span><span class="math-ans">= ' + (6+3) + '</span></div>' +
-      '<div class="math-row"><span class="math-eq">6 − 3</span><span class="math-ans">= ' + (6-3) + '</span></div>' +
-      '<div class="math-row"><span class="math-eq">6 × 3</span><span class="math-ans">= ' + (6*3) + '</span></div>' +
-      '<div class="math-row"><span class="math-eq">6 ÷ 3</span><span class="math-ans">= ' + (6/3) + '</span></div>';
+  <!-- Values Prediction -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔍</div>
+      <div class="card-title">Values Prediction</div>
+    </div>
+    <div id="values-rows"></div>
+    <div class="concept">
+      <strong>Key concept:</strong> No quotes = a number, JavaScript can do math with it.
+      Quotes = text, JavaScript prints it as-is or glues it together.
+    </div>
+  </div>
 
-    document.getElementById("values").innerHTML =
-      '<div class="math-row"><span class="math-eq">4 + 5 (numbers)</span><span class="math-ans">= ' + (4+5) + '</span></div>' +
-      '<div class="math-row"><span class="math-eq">"4" + "5" (strings)</span><span class="math-ans">= ' + ("4"+"5") + '</span></div>';
-  </script>
+  <div class="tags">
+    <span class="tag">JavaScript</span>
+    <span class="tag">HTML</span>
+    <span class="tag">DOM</span>
+    <span class="tag">Variables</span>
+  </div>
+</main>
+
+<footer>made with love · stephanie's portfolio</footer>
+
+<script>
+  // Presentation
+  let name = "Stephanie";
+  let age = 23;
+  document.getElementById("presentation").textContent =
+    "My name is " + name + " and I am " + age + " years old.";
+
+  // Calculator
+  const calcRows = [
+    ["6 + 3", 6 + 3],
+    ["6 - 3", 6 - 3],
+    ["6 × 3", 6 * 3],
+    ["6 ÷ 3", 6 / 3],
+  ];
+  const calcContainer = document.getElementById("calculator-rows");
+  calcRows.forEach(([label, value]) => {
+    calcContainer.innerHTML += `
+      <div class="output-row">
+        <span class="output-label">${label}</span>
+        <span class="output-value">= ${value}</span>
+      </div>`;
+  });
+
+  // Values Prediction
+  const valRows = [
+    ["4 + 5 (numbers)", 4 + 5],
+    ['"4 + 5" (string)', "4 + 5"],
+    ['"4" + "5" (strings)', "4" + "5"],
+  ];
+  const valContainer = document.getElementById("values-rows");
+  valRows.forEach(([label, value]) => {
+    valContainer.innerHTML += `
+      <div class="output-row">
+        <span class="output-label">${label}</span>
+        <span class="output-value">${value}</span>
+      </div>`;
+  });
+</script>
+
 </body>
 </html>

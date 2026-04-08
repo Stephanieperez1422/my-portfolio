@@ -1,64 +1,57 @@
- <!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html> <!-- This tells the browser that we are working with HTML -->
+<html lang="en"> <!-- Root element, everything goes inside this tag -->
+
+<head> <!-- Contains information about the page, not visible to users -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Performance Plate</title>
-	<!-- Favicon -->
-<link rel="icon" type="image/png" href="favicon.png">
-<link href="tooplate-minimal-white-style.css" rel="stylesheet">
+  <title>Private Swim Lessons</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="home-page">
 
-  <!-- Navigation -->
-  <nav id="navbar">
-    <div class="nav-container">
+<body>
 
-      <!-- Logo -->
-      <a href="#home" class="logo">
-        <img src="Images/logo.png" alt="TPP Logo">
-      </a>
+  <!-- Navigation Menu -->
+  <nav class="navbar"> <!-- defines the navigation area -->
 
-      <!-- Mobile Menu -->
-      <div class="menu-toggle" id="menuToggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+    <ul class="nav-menu"> <!-- creates a list of menu links -->
 
-      <!-- Navigation Links -->
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="nav-link">HOME</a></li>
-	<li><a href="buildmuscle.html" class="nav-link">BUILD MUSCLE</a></li>
-	<li><a href="losefat.html" class="nav-link">LOSE FAT</a></li>
-	<li><a href="nutrition.html" class="nav-link">NUTRITION BASICS</a></li>
-	<li><a href="tools.html" class="nav-link">TOOLS</a></li>
-	<li><a href="contact.html" class="nav-link">CONTACT</a></li>
-      </ul>
+      <li><a href="#">Home</a></li>
 
-    </div>
+      <li><a href="#">About</a></li>
+
+      <li class="dropdown"> <!-- tells CSS this item has a submenu -->
+
+        <a href="#">Services ▾</a>
+
+        <ul class="dropdown-menu"> <!-- dropdown list -->
+
+          <li><a href="#">Beginner Lessons</a></li>
+
+          <li><a href="#">Intermediate Lessons</a></li>
+
+          <li><a href="#">Advanced Training</a></li>
+
+        </ul>
+
+      </li>
+
+      <li><a href="#">Book a Lesson</a></li>
+
+      <li><a href="#">Contact</a></li>
+
+    </ul>
+
   </nav>
 
   <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="floating-objects">
-      <div class="floating-circle"></div>
-      <div class="floating-square"></div>
-      <div class="floating-line"></div>
-    </div>
+  <div class="hero">
+    <div class="avatar">🏊</div>
+    <h1>Private Swim Lessons</h1>
+    <p>Learn to swim with confidence — beginner to advanced.</p>
+    <a href="#" class="button">Book a Lesson</a>
+  </div>
 
-    <div class="hero-content fade-in">
-      <h1>The Performance Plate</h1>
-      <p class="subtitle">Fuel your goals, one plate at a time</p>
-	<a href="choose-your-path.html" class="cta-button">EXPLORE</a>			
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 The Performance Plate — Designed by Stephanie Perez</p>
-  </footer>
-
-  <script src="tooplate-minimal-script.js"></script>
 </body>
 </html>
