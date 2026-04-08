@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lose Fat | The Performance Plate</title>
+	<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
+  <link href="tooplate-minimal-white-style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+
+      <!-- Logo (same as home) -->
+      <a href="index.html#home" class="logo">
+        <img src="Images/logo.png" alt="TPP Logo">
+      </a>
+
+      <!-- Mobile Menu -->
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home" class="nav-link">HOME</a></li>
+        <li><a href="buildmuscle.html" class="nav-link">BUILD MUSCLE</a></li>
+        <li><a href="losefat.html" class="nav-link active">LOSE FAT</a></li>
+        <li><a href="nutrition.html" class="nav-link">NUTRITION BASICS</a></li>
+        <li><a href="tools.html" class="nav-link">TOOLS</a></li>
+        <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+      </ul>
+
+    </div>
+  </nav>
+	
+  <section id="lose-fat" class="content-section fade-in">
+    <div class="container">
+      <h2>Lose Fat</h2>
+
+      <p>
+        Losing fat happens when your body burns more calories than you eat. 
+        The goal is to create a small, sustainable calorie deficit while keeping your muscle.
+      </p>
+
+      <!-- Accordion group -->
+      <div class="accordion-group">
+
+        <!-- 1. Calorie Deficit Basics -->
+        <button class="accordion-btn">
+          <span>Calorie Deficit Basics</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <ul>
+            <li>Use a small 200–500 calorie deficit daily.</li>
+            <li>Avoid extreme deficits to prevent muscle loss, cravings, and low energy.</li>
+          </ul>
+        </div>
+
+        <!-- 2. Protein for Fat Loss -->
+        <button class="accordion-btn">
+          <span>Protein for Fat Loss</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <ul>
+            <li>Aim for 0.7–1 gram of protein per pound of bodyweight.</li>
+            <li>Protein keeps you full and helps maintain muscle while cutting.</li>
+          </ul>
+        </div>
+
+        <!-- 3. Training -->
+        <button class="accordion-btn">
+          <span>Training</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <ul>
+            <li>Lift weights 3–4 times per week to protect muscle.</li>
+            <li>Add light cardio like walking or incline treadmill for health and fat loss.</li>
+          </ul>
+        </div>
+
+        <!-- 4. Food Choices -->
+        <button class="accordion-btn">
+          <span>Food Choices</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <ul>
+            <li>Choose high-volume meals (veggies, salads, soups).</li>
+            <li>Eat lean proteins like chicken, tuna, Greek yogurt, egg whites.</li>
+            <li>Use low-calorie swaps (ex: Greek yogurt instead of sour cream).</li>
+          </ul>
+        </div>
+
+        <!-- 5. Behavior Tips -->
+        <button class="accordion-btn">
+          <span>Behavior Tips</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <ul>
+            <li>Drink enough water throughout the day.</li>
+            <li>Eat balanced meals during the day to avoid nighttime cravings.</li>
+            <li>Prioritize sleep — it controls hunger and cravings.</li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- end accordion-group -->
+
+    </div>
+  </section>
+	
+	
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 The Performance Plate — Designed by Stephanie Perez</p>
+  </footer>
+
+  <!-- Scripts (for mobile menu + effects) -->
+  <script src="tooplate-minimal-script.js"></script>
+
+  <!-- Small script just for the accordion -->
+  <script>
+    document.querySelectorAll(".accordion-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        // toggle active button
+        btn.classList.toggle("active");
+
+        // rotate the + icon into –
+        const icon = btn.querySelector(".accordion-icon");
+        if (btn.classList.contains("active")) {
+          icon.textContent = "–";
+        } else {
+          icon.textContent = "+";
+        }
+
+        // expand / collapse panel
+        const panel = btn.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

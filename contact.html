@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | The Performance Plate</title>
+	<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
+  <link href="tooplate-minimal-white-style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+
+      <!-- Logo -->
+      <a href="index.html#home" class="logo">
+        <img src="Images/logo.png" alt="TPP Logo">
+      </a>
+
+      <!-- Mobile Menu -->
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home" class="nav-link">HOME</a></li>
+        <li><a href="buildmuscle.html" class="nav-link">BUILD MUSCLE</a></li>
+        <li><a href="losefat.html" class="nav-link">LOSE FAT</a></li>
+        <li><a href="nutrition.html" class="nav-link">NUTRITION BASICS</a></li>
+        <li><a href="tools.html" class="nav-link">TOOLS</a></li>
+        <li><a href="contact.html" class="nav-link active">CONTACT</a></li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <!-- Contact Section -->
+  <section id="contact" class="content-section fade-in">
+    <div class="container">
+
+      <h2>Contact</h2>
+
+      <p>
+        If you have any questions, suggestions, or feedback about your goals, nutrition, 
+        or how to use The Performance Plate, feel free to reach out below.
+      </p>
+
+      <form action="#" method="post" class="contact-form">
+
+        <!-- NAME -->
+        <div class="form-group">
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            class="form-control" 
+            placeholder=" " 
+            required>
+          <label for="name">Name*</label>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            class="form-control"
+            required>
+          <label for="email">Email*</label>
+        </div>
+
+        <!-- TOPIC -->
+        <div class="form-group">
+          <select 
+            id="topic" 
+            name="topic" 
+            class="form-control">
+			<option value="" selected disabled>Select a topic</option>
+			<option value="build-muscle">Building muscle</option>
+            <option value="lose-fat">Losing fat</option>
+            <option value="nutrition">Nutrition basics</option>
+            <option value="tools">Tools</option>
+            <option value="other">Other</option>
+          </select>
+          <label for="topic">What are you reaching out about? (optional)</label>
+        </div>
+
+        <!-- MESSAGE -->
+        <div class="form-group">
+          <textarea 
+            id="message" 
+            name="message" 
+            rows="6" 
+            class="form-control" 
+            placeholder=" " 
+            required></textarea>
+          <label for="message">Message*</label>
+        </div>
+
+        <!-- BUTTON -->
+        <button type="submit" class="cta-button">Send Message</button>
+
+      </form>
+
+      <!-- Extra Info -->
+      <div class="contact-info">
+        <p><strong>Response time:</strong> Usually within 24–48 hours.</p>
+        <p><strong>Note:</strong> This site is for educational purposes only.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 The Performance Plate — Designed by Stephanie Perez</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="tooplate-minimal-script.js"></script>
+
+</body>
+</html>
