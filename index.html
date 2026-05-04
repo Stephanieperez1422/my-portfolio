@@ -1,57 +1,474 @@
-<!DOCTYPE html> <!-- This tells the browser that we are working with HTML -->
-<html lang="en"> <!-- Root element, everything goes inside this tag -->
-
-<head> <!-- Contains information about the page, not visible to users -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Private Swim Lessons</title>
+  <title>Stephanie Perez · Web Development Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-</head>
+  <style>
+    /* NAV */
+    nav {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 0.5px solid var(--pink-200);
+      padding: 0.85rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg, #f48fb1, #ce93d8);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 13px; font-weight: 500;
+      font-family: 'Playfair Display', serif;
+      text-decoration: none; flex-shrink: 0; margin-right: 3rem;
+    }
+    .nav-menu {
+      display: flex; list-style: none; gap: 0.5rem;
+      margin: 0; padding: 0; align-items: center;
+    }
+    .nav-menu > li > a {
+      color: var(--pink-muted); text-decoration: none;
+      padding: 10px 30px; display: flex; align-items: center; gap: 4px;
+      font-size: 14px; font-weight: 500; border-radius: 20px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-menu > li > a:hover { background: var(--pink-100); color: var(--pink-text); }
 
+    /* DROPDOWN */
+    .dropdown { position: relative; }
+    .dropdown-menu {
+      display: none;
+      position: absolute; top: calc(100% + 4px); left: 0;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      list-style: none; min-width: 185px;
+      border: 0.5px solid var(--pink-200);
+      border-radius: 12px; overflow: hidden;
+      z-index: 200; padding: 4px 0;
+      box-shadow: 0 8px 20px rgba(180,100,160,0.12);
+    }
+    .dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-label {
+      padding: 6px 16px 2px;
+      font-size: 10px; color: var(--pink-light);
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .dropdown-divider { border-top: 0.5px solid var(--pink-200); margin: 4px 0; }
+    .dropdown-menu li a {
+      color: var(--pink-muted); padding: 7px 16px;
+      display: block; font-size: 12px; font-weight: 500;
+      text-decoration: none; transition: background 0.2s, color 0.2s;
+    }
+    .dropdown-menu li a:hover { background: var(--pink-100); color: var(--pink-text); }
+
+    /* WRAPPER */
+    .wrapper { max-width: 900px; margin: 0 auto; padding: 0 1.25rem 3rem; }
+    .section { margin-bottom: 1rem; }
+
+    /* COMING SOON */
+    .coming-soon {
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+      border: 1.5px dashed var(--pink-200);
+      border-radius: var(--radius);
+      padding: 2.5rem 1.75rem;
+      text-align: center; margin-bottom: 2.5rem;
+    }
+    .coming-soon .cs-icon { font-size: 32px; margin-bottom: 0.75rem; }
+    .coming-soon h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px; font-weight: 500;
+      color: var(--pink-text); margin-bottom: 0.4rem;
+    }
+    .coming-soon p { font-size: 13px; color: var(--pink-muted); }
+
+    @media (max-width: 600px) {
+      .nav-menu > li > a { padding: 8px 10px; font-size: 13px; }
+    }
+
+    /* ── INVOICE ── */
+    .inv-header-grid { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; }
+    .inv-title-text { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 500; letter-spacing: 5px; color: var(--pink-300); margin-bottom: 0.75rem; }
+    .inv-meta-block { text-align: right; min-width: 220px; }
+    .inv-meta-row { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 6px; font-size: 13px; color: var(--pink-muted); font-weight: 500; }
+    .inv-input, .field-input, .num-input { border: 0.5px solid var(--pink-200); border-radius: 20px; padding: 5px 12px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--pink-text); background: rgba(255,255,255,0.75); outline: none; transition: border-color 0.2s; }
+    .inv-input { width: 145px; }
+    .inv-input:focus, .field-input:focus, .num-input:focus { border-color: var(--pink-300); }
+    .field-input { display: block; width: 100%; margin-bottom: 7px; }
+    .field-input::placeholder, .field-textarea::placeholder, .desc-input::placeholder { color: var(--pink-light); }
+    .field-textarea { display: block; width: 100%; height: 118px; border: 0.5px solid var(--pink-200); border-radius: 12px; padding: 10px 14px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--pink-text); background: rgba(255,255,255,0.75); resize: vertical; outline: none; transition: border-color 0.2s; }
+    .field-textarea:focus { border-color: var(--pink-300); }
+    .inv-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .inv-table thead tr { background: linear-gradient(90deg, #f48fb1, #ce93d8); }
+    .inv-table th { padding: 11px 14px; text-align: left; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #fff; }
+    .inv-table th:nth-child(3), .inv-table th:nth-child(4), .inv-table th:nth-child(5) { text-align: right; }
+    .inv-table tbody tr { border-bottom: 0.5px solid var(--pink-100); transition: background 0.15s; }
+    .inv-table tbody tr:nth-child(even) { background: rgba(252,228,236,0.25); }
+    .inv-table tbody tr:hover { background: rgba(252,228,236,0.45); }
+    .inv-table td { padding: 9px 14px; vertical-align: middle; }
+    .inv-table td:nth-child(3), .inv-table td:nth-child(4), .inv-table td:nth-child(5) { text-align: right; }
+    .row-num { color: var(--pink-light); font-size: 11px; width: 32px; }
+    .desc-input { width: 100%; border: none; background: transparent; font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--pink-text); outline: none; }
+    .num-input { width: 78px; text-align: right; }
+    .line-total { font-weight: 500; color: var(--pink-text); }
+    .totals-outer { display: flex; justify-content: flex-end; margin-top: 14px; }
+    .totals-card { width: 280px; }
+    .total-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 0.5px solid var(--pink-100); font-size: 13px; color: var(--pink-muted); }
+    .total-row:last-child { border-bottom: none; }
+    .total-row span:first-child { font-weight: 500; }
+    .total-row span:last-child { font-weight: 500; color: var(--pink-text); }
+    .tax-inline { display: flex; align-items: center; gap: 5px; }
+    .tax-input { width: 62px !important; }
+    .grand-row { margin-top: 6px; padding: 10px 14px; background: linear-gradient(90deg, #f48fb1, #ce93d8); border-radius: 20px; border-bottom: none !important; }
+    .grand-row span { color: #fff !important; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 500 !important; }
+    @media (max-width: 600px) { .inv-meta-block { text-align: left; min-width: unset; } .inv-meta-row { justify-content: flex-start; } .totals-outer { justify-content: stretch; } .totals-card { width: 100%; } }
+  </style>
+</head>
 <body>
 
-  <!-- Navigation Menu -->
-  <nav class="navbar"> <!-- defines the navigation area -->
-
-    <ul class="nav-menu"> <!-- creates a list of menu links -->
-
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">SP</a>
+    <ul class="nav-menu">
       <li><a href="#">Home</a></li>
-
-      <li><a href="#">About</a></li>
-
-      <li class="dropdown"> <!-- tells CSS this item has a submenu -->
-
-        <a href="#">Services ▾</a>
-
-        <ul class="dropdown-menu"> <!-- dropdown list -->
-
-          <li><a href="#">Beginner Lessons</a></li>
-
-          <li><a href="#">Intermediate Lessons</a></li>
-
-          <li><a href="#">Advanced Training</a></li>
-
+      <li class="dropdown">
+        <a href="#">BIS 23 <span style="font-size:10px;">▾</span></a>
+        <ul class="dropdown-menu">
+          <li class="dropdown-label">Projects</li>
+          <li><a href="#bis23-projects">→ View all projects</a></li>
+          <li class="dropdown-divider"></li>
+          <li class="dropdown-label">Assignments</li>
+          <li><a href="#bis23-assignments">→ View all assignments</a></li>
         </ul>
-
       </li>
-
-      <li><a href="#">Book a Lesson</a></li>
-
-      <li><a href="#">Contact</a></li>
-
+      <li class="dropdown">
+        <a href="#">BIS 31 <span style="font-size:10px;">▾</span></a>
+        <ul class="dropdown-menu">
+          <li class="dropdown-label">Projects</li>
+          <li><a href="#bis31-projects">→ View all projects</a></li>
+          <li><a href="#invoice-section">→ Invoice Generator</a></li>
+          <li class="dropdown-divider"></li>
+          <li class="dropdown-label">Assignments</li>
+          <li><a href="#bis31-assignments">→ View all assignments</a></li>
+        </ul>
+      </li>
     </ul>
-
   </nav>
 
-  <!-- Hero Section -->
+  <!-- HERO -->
   <div class="hero">
-    <div class="avatar">🏊</div>
-    <h1>Private Swim Lessons</h1>
-    <p>Learn to swim with confidence — beginner to advanced.</p>
-    <a href="#" class="button">Book a Lesson</a>
+    <div class="avatar">SP</div>
+    <h1>Web Development Portfolio</h1>
+    <p>A collection of assignments and projects I've built</p>
   </div>
 
+  <!-- PHOTO SLIDER SECTION -->
+  <div class="wrapper">
+    <p class="section-label">Photo gallery</p>
+
+    <div class="featured slider-section">
+      <div class="featured-badge">📷 My Photos</div>
+
+      <div class="slider-wrapper">
+        <div class="slides">
+          <img class="slide" src="IMG_8377.jpeg" alt="Sticker wall NYC" />
+          <img class="slide" src="IMG_7623.jpeg" alt="Queensboro Bridge NYC" />
+          <img class="slide" src="IMG_5180.jpeg" alt="Waterfront at dusk" />
+          <img class="slide" src="IMG_4457.jpeg" alt="Hudson River sunset" />
+          <img class="slide" src="IMG_4446.jpeg" alt="White flowers" />
+          <img class="slide" src="IMG_1193.jpeg" alt="Beach sunrise Puerto Rico" />
+          <img class="slide" src="IMG_0926.jpeg" alt="Clear water Puerto Rico" />
+          <img class="slide" src="IMG_0654.jpeg" alt="Ocean sailboat sunset" />
+        </div>
+
+        <button class="nav-btn prev" onclick="changeSlide(-1)">&#8592;</button>
+        <button class="nav-btn next" onclick="changeSlide(1)">&#8594;</button>
+
+        <div class="slide-counter">
+          <span id="current">1</span> / <span id="total">8</span>
+        </div>
+      </div>
+
+      <!-- Dots -->
+      <div class="dots" id="dots"></div>
+
+      <!-- Caption -->
+      <div class="slide-caption" id="caption"></div>
+    </div>
+
+    <!-- BIS 23 PROJECTS -->
+    <div id="bis23-projects" class="section">
+      <p class="section-label">BIS 23 · Projects</p>
+
+      <!-- FEATURED -->
+      <div class="featured">
+        <div class="featured-badge">⭐ Featured</div>
+        <div class="featured-top">
+          <div class="featured-icon">🏋️</div>
+          <div>
+            <div class="featured-title">The Performance Plate</div>
+            <div class="featured-desc">A full multi-page fitness and nutrition website covering muscle building, fat loss, and nutrition basics. Includes four working calculators (TDEE, protein, macros, BMI), a responsive navbar, accordion sections, fade-in animations, and a contact form.</div>
+          </div>
+        </div>
+        <div class="pills">
+          <span class="pill">index.html</span>
+          <span class="pill">choose-your-path.html</span>
+          <span class="pill">buildmuscle.html</span>
+          <span class="pill">losefat.html</span>
+          <span class="pill">nutrition.html</span>
+          <span class="pill">tools.html</span>
+          <span class="pill">contact.html</span>
+        </div>
+        <div class="tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Responsive</span>
+          <span class="tag">Multi-page</span>
+          <span class="tag">Calculators</span>
+        </div>
+        <a class="card-link" href="https://stephanieperez1422.github.io/theperformanceplate/" target="_blank">View project ↗</a>
+      </div>
+
+      <p class="section-label">Other projects</p>
+      <div class="grid">
+
+        <!-- COIN TOSS + RANDOM VALUES -->
+        <div class="card">
+          <div class="accent a1"></div>
+          <div class="card-icon">🪙🎲</div>
+          <h3>Random generators</h3>
+          <p>Coin toss simulation (100 flips) and random number generator across three ranges (1–27, 1–178, 1–600).</p>
+          <div class="card-tags">
+            <span class="ctag">JavaScript</span>
+            <span class="ctag">HTML</span>
+          </div>
+          <a class="clink" href="projects/coinToss.html" target="_blank">View project ↗</a>
+        </div>
+
+        <!-- MPG CALCULATOR -->
+        <div class="card">
+          <div class="accent a5"></div>
+          <div class="card-icon">🚗</div>
+          <h3>MPG Calculator</h3>
+          <p>Calculate your car's fuel efficiency in miles per gallon with an efficiency rating badge.</p>
+          <div class="card-tags">
+            <span class="ctag">JavaScript</span>
+            <span class="ctag">HTML</span>
+            <span class="ctag">CSS</span>
+          </div>
+          <a class="clink" href="https://stephanieperez1422.github.io/calculator-pink-/" target="_blank">View project ↗</a>
+        </div>
+
+        <!-- JS BASICS -->
+        <div class="card">
+          <div class="accent a2"></div>
+          <div class="card-icon">💻</div>
+          <h3>JS basics</h3>
+          <p>Variables, DOM manipulation, a mini calculator, and type concepts.</p>
+          <div class="card-tags">
+            <span class="ctag">HTML</span>
+            <span class="ctag">JavaScript</span>
+          </div>
+          <a class="clink" href="https://stephanieperez1422.github.io/JS-Presentation-Assignment/" target="_blank">View project ↗</a>
+        </div>
+
+        <!-- LOOPS -->
+        <div class="card">
+          <div class="accent a3"></div>
+          <div class="card-icon">🔁</div>
+          <h3>Loops assignment</h3>
+          <p>Demonstrates for, while, and do-while loops with sum and product calculations.</p>
+          <div class="card-tags">
+            <span class="ctag">HTML</span>
+            <span class="ctag">JavaScript</span>
+          </div>
+          <a class="clink" href="https://stephanieperez1422.github.io/PHP-LOOPS/" target="_blank">View project ↗</a>
+        </div>
+
+        <!-- SWIM LESSONS -->
+        <div class="card wip">
+          <div class="accent a4"></div>
+          <div class="card-icon">🏊</div>
+          <h3>Private swim lessons</h3>
+          <p>Responsive navbar with dropdown for a swim school. Full page coming soon.</p>
+          <div class="card-tags">
+            <span class="ctag">HTML</span>
+            <span class="ctag">CSS</span>
+            <span class="wip-tag">🚧 In progress</span>
+          </div>
+          <a class="clink wip-link" href="https://stephanieperez1422.github.io/dream/#" target="_blank">View project ↗ · In progress</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BIS 23 ASSIGNMENTS -->
+    <div id="bis23-assignments" class="section">
+      <p class="section-label">BIS 23 · Assignments</p>
+      <div class="coming-soon">
+        <div class="cs-icon">📝</div>
+        <h3>Assignments coming soon</h3>
+        <p>Add your BIS 23 assignments here.</p>
+      </div>
+    </div>
+
+    <!-- BIS 31 PROJECTS -->
+    <div id="bis31-projects" class="section">
+      <p class="section-label">BIS 31 · Projects</p>
+
+      <!-- EXERCISE 9 FEATURED -->
+      <div class="featured">
+        <div class="featured-badge">⭐ Featured</div>
+        <div class="featured-top">
+          <div class="featured-icon">🗄️</div>
+          <div>
+            <div class="featured-title">Data-Driven Web Form</div>
+            <div class="featured-desc">A full-stack contact form that collects user input on the front-end and stores it in a MySQL database via a PHP back-end. Built with a custom form, client-side validation, CORS-enabled PHP script, and phpMyAdmin for database management. Front-end hosted on GitHub Pages, back-end on InfinityFree.</div>
+          </div>
+        </div>
+        <div class="pills">
+          <span class="pill">index.html</span>
+          <span class="pill">style.css</span>
+          <span class="pill">script.js</span>
+          <span class="pill">save.php</span>
+        </div>
+        <div class="tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">phpMyAdmin</span>
+        </div>
+        <a class="card-link" href="https://stephanieperez1422.github.io/exercise-9/" target="_blank">View project ↗</a>
+      </div>
+
+      <!-- INVOICE GENERATOR -->
+      <div id="invoice-section">
+        <div class="featured" style="margin-bottom:1.25rem;">
+          <div class="featured-badge">📄 Invoice Form</div>
+          <div class="inv-header-grid">
+            <div>
+              <div class="featured-title">Your Company Name</div>
+              <div class="featured-desc">
+                123 Main Street, New York, NY 10001<br>
+                Phone: (555) 123-4567 &nbsp;·&nbsp; Email: billing@yourcompany.com
+              </div>
+            </div>
+            <div class="inv-meta-block">
+              <div class="inv-title-text">INVOICE</div>
+              <div class="inv-meta-row"><span>Invoice #</span><input class="inv-input" id="invoice-num" value="INV-001" /></div>
+              <div class="inv-meta-row"><span>Date</span><input class="inv-input" id="invoice-date" type="date" /></div>
+              <div class="inv-meta-row"><span>Due Date</span><input class="inv-input" id="due-date" type="date" /></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" style="margin-bottom:1.25rem;">
+          <div class="card">
+            <div class="accent a1"></div>
+            <p class="section-label" style="margin-top:0.5rem;">Bill To</p>
+            <input class="field-input" placeholder="Client Name" />
+            <input class="field-input" placeholder="Company Name" />
+            <input class="field-input" placeholder="Address" />
+            <input class="field-input" placeholder="City, State, ZIP" />
+            <input class="field-input" placeholder="Email" />
+          </div>
+          <div class="card">
+            <div class="accent a5"></div>
+            <p class="section-label" style="margin-top:0.5rem;">For</p>
+            <textarea class="field-textarea" placeholder="Description of services or project..."></textarea>
+          </div>
+        </div>
+
+        <div class="featured" style="padding:0;overflow:hidden;margin-bottom:1.25rem;">
+          <table class="inv-table">
+            <thead>
+              <tr><th>#</th><th>Description</th><th>Qty</th><th>Unit Price</th><th>Amount</th></tr>
+            </thead>
+            <tbody id="items-body">
+              <tr><td class="row-num">1</td><td><input class="desc-input" placeholder="Item description" /></td><td><input class="num-input qty" type="number" value="1" min="0" /></td><td><input class="num-input price" type="number" value="0.00" min="0" step="0.01" /></td><td class="line-total">$0.00</td></tr>
+              <tr><td class="row-num">2</td><td><input class="desc-input" placeholder="Item description" /></td><td><input class="num-input qty" type="number" value="1" min="0" /></td><td><input class="num-input price" type="number" value="0.00" min="0" step="0.01" /></td><td class="line-total">$0.00</td></tr>
+              <tr><td class="row-num">3</td><td><input class="desc-input" placeholder="Item description" /></td><td><input class="num-input qty" type="number" value="1" min="0" /></td><td><input class="num-input price" type="number" value="0.00" min="0" step="0.01" /></td><td class="line-total">$0.00</td></tr>
+              <tr><td class="row-num">4</td><td><input class="desc-input" placeholder="Item description" /></td><td><input class="num-input qty" type="number" value="1" min="0" /></td><td><input class="num-input price" type="number" value="0.00" min="0" step="0.01" /></td><td class="line-total">$0.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="totals-outer">
+          <div class="card totals-card">
+            <div class="accent a1"></div>
+            <p class="section-label" style="margin-top:0.5rem;">Summary</p>
+            <div class="total-row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+            <div class="total-row"><span>Tax Rate</span><span class="tax-inline"><input class="num-input tax-input" id="tax-rate" type="number" value="8.875" step="0.001" min="0" /> %</span></div>
+            <div class="total-row"><span>Tax Amount</span><span id="tax-amount">$0.00</span></div>
+            <div class="total-row grand-row"><span>Total Due</span><span id="grand-total">$0.00</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BIS 31 ASSIGNMENTS -->
+    <div id="bis31-assignments" class="section">
+      <p class="section-label">BIS 31 · Assignments</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="accent a1"></div>
+          <div class="card-icon">🗄️</div>
+          <h3>Exercise 9 — PHP & MySQL</h3>
+          <p>Data-driven web form that collects name & email and saves entries to a MySQL database via PHP. Includes client-side validation and phpMyAdmin proof.</p>
+          <div class="card-tags">
+            <span class="ctag">PHP</span>
+            <span class="ctag">MySQL</span>
+            <span class="ctag">HTML/CSS</span>
+            <span class="ctag">JavaScript</span>
+          </div>
+          <a class="clink" href="https://stephanieperez1422.github.io/exercise-9/" target="_blank">View project ↗</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>made with love · stephanie's portfolio</footer>
+
+  <script src="script.js"></script>
+  <script>
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('invoice-date').value = today;
+    const due = new Date(); due.setDate(due.getDate() + 30);
+    document.getElementById('due-date').value = due.toISOString().split('T')[0];
+
+    function calculateTotals() {
+      let subtotal = 0;
+      document.querySelectorAll('#items-body tr').forEach(row => {
+        const qty   = parseFloat(row.querySelector('.qty').value)   || 0;
+        const price = parseFloat(row.querySelector('.price').value) || 0;
+        const lt = qty * price;
+        row.querySelector('.line-total').textContent = '$' + lt.toFixed(2);
+        subtotal += lt;
+      });
+      const taxRate   = parseFloat(document.getElementById('tax-rate').value) || 0;
+      const taxAmount = subtotal * (taxRate / 100);
+      document.getElementById('subtotal').textContent    = '$' + subtotal.toFixed(2);
+      document.getElementById('tax-amount').textContent  = '$' + taxAmount.toFixed(2);
+      document.getElementById('grand-total').textContent = '$' + (subtotal + taxAmount).toFixed(2);
+    }
+    document.getElementById('items-body').addEventListener('input', e => {
+      if (e.target.classList.contains('qty') || e.target.classList.contains('price')) calculateTotals();
+    });
+    document.getElementById('tax-rate').addEventListener('input', calculateTotals);
+    calculateTotals();
+  </script>
 </body>
 </html>
