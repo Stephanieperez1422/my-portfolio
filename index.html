@@ -14,9 +14,48 @@
     <a href="javascript:void(0)" onclick="showSection('home')" class="nav-logo">SP</a>
     <ul class="nav-menu">
       <li><a href="javascript:void(0)" onclick="showSection('home')">Home</a></li>
-      <li><a href="javascript:void(0)" onclick="showSection('bis23-projects')">BIS 23</a></li>
-      <li><a href="javascript:void(0)" onclick="showSection('bis31-projects')">BIS 31</a></li>
-      <li><a href="javascript:void(0)" onclick="showSection('final')">Final</a></li>
+
+      <!-- BIS 23 dropdown -->
+      <li class="dropdown">
+        <a href="javascript:void(0)" onclick="showSection('bis23-projects')">BIS 23 <span class="caret">▾</span></a>
+        <ul class="dropdown-menu">
+          <li class="dropdown-label">Projects</li>
+          <li><a href="javascript:void(0)" onclick="showSection('bis23-projects')">🏋️ The Performance Plate</a></li>
+          <li><a href="javascript:void(0)" onclick="showSection('bis23-projects')">🪙 Random Generators</a></li>
+          <li><a href="javascript:void(0)" onclick="showSection('bis23-projects')">🚗 MPG Calculator</a></li>
+          <li><a href="javascript:void(0)" onclick="showSection('bis23-projects')">💻 JS Basics</a></li>
+          <li><a href="javascript:void(0)" onclick="showSection('bis23-projects')">🔁 Loops Assignment</a></li>
+          <li class="dropdown-divider"></li>
+          <li class="dropdown-label">Assignments</li>
+          <li><a href="javascript:void(0)" onclick="showSection('bis23-projects')">💻 Equipment Budget</a></li>
+          <li><a href="javascript:void(0)" onclick="showSection('bis23-projects')">🏊 Swim Lessons Proposal</a></li>
+          <li><a href="javascript:void(0)" onclick="showSection('bis23-projects')">🐛 Debugging &amp; Pseudocode</a></li>
+        </ul>
+      </li>
+
+      <!-- BIS 31 dropdown -->
+      <li class="dropdown">
+        <a href="javascript:void(0)" onclick="showSection('bis31-projects')">BIS 31 <span class="caret">▾</span></a>
+        <ul class="dropdown-menu">
+          <li class="dropdown-label">Projects</li>
+          <li><a href="javascript:void(0)" onclick="showSection('bis31-projects')">🗄️ Data-Driven Web Form</a></li>
+          <li><a href="javascript:void(0)" onclick="showSection('bis31-projects')">📄 Invoice Generator</a></li>
+          <li><a href="javascript:void(0)" onclick="showSection('bis31-projects')">💼 Employee Salary Calc</a></li>
+          <li><a href="javascript:void(0)" onclick="showSection('bis31-projects')">🌐 PHP Contact Form</a></li>
+          <li class="dropdown-divider"></li>
+          <li class="dropdown-label">Assignments</li>
+          <li><a href="javascript:void(0)" onclick="showSection('bis31-projects')">🏊 Swim Lessons Proposal</a></li>
+        </ul>
+      </li>
+
+      <!-- Final dropdown -->
+      <li class="dropdown">
+        <a href="javascript:void(0)" onclick="showSection('final')">Final <span class="caret">▾</span></a>
+        <ul class="dropdown-menu">
+          <li class="dropdown-label">Projects</li>
+          <li><a href="javascript:void(0)" onclick="showSection('final')">🏊 Private Swim Lessons</a></li>
+        </ul>
+      </li>
     </ul>
   </nav>
 
@@ -35,6 +74,28 @@
           <button class="quick-btn outline" onclick="showSection('final')">Final</button>
         </div>
       </div>
+
+      <!-- Photo Slider -->
+      <div class="slider-section">
+        <div class="slider-wrapper">
+          <div class="slides">
+            <img src="IMG_8377.jpeg" class="slide" alt="NYC sticker wall">
+            <img src="IMG_7623.jpeg" class="slide" alt="Queensboro Bridge">
+            <img src="IMG_5180.jpeg" class="slide" alt="Waterfront at dusk">
+            <img src="IMG_4457.jpeg" class="slide" alt="Hudson River sunset">
+            <img src="IMG_4446.jpeg" class="slide" alt="White flowers in the garden">
+            <img src="IMG_1193.jpeg" class="slide" alt="Sunrise on the beach, Puerto Rico">
+            <img src="IMG_0926.jpeg" class="slide" alt="Crystal clear water, Puerto Rico">
+            <img src="IMG_0654.jpeg" class="slide" alt="Sailboat on the ocean at golden hour">
+          </div>
+          <button class="nav-btn prev" onclick="changeSlide(-1)">&#8249;</button>
+          <button class="nav-btn next" onclick="changeSlide(1)">&#8250;</button>
+          <div class="slide-counter"><span id="current">1</span> / <span id="total">8</span></div>
+        </div>
+        <div class="dots" id="dots"></div>
+        <p class="slide-caption" id="caption"></p>
+      </div>
+
     </div>
 
     <!-- BIS 23 -->
@@ -77,9 +138,10 @@
               <div class="tags"><span class="tag">JavaScript</span><span class="tag">HTML</span></div>
             </div>
           </div>
+          <a class="card-link" href="https://stephanieperez1422.github.io/Coin-Toss-Simulation/" target="_blank">Open in new tab ↗</a>
           <button class="toggle-btn" onclick="toggleProject('cointoss-frame', this)">Open Project ↓</button>
           <div id="cointoss-frame" class="project-frame-wrap">
-            <iframe src="https://stephanieperez1422.github.io/my-portfolio/projects/coinToss.html" class="project-frame"></iframe>
+            <iframe src="https://stephanieperez1422.github.io/Coin-Toss-Simulation/" class="project-frame"></iframe>
           </div>
         </div>
 
@@ -128,42 +190,124 @@
           </div>
         </div>
 
-        <div class="featured">
-          <div class="featured-top">
-            <div class="featured-icon">🏊</div>
-            <div>
-              <div class="featured-title">Private Swim Lessons</div>
-              <div class="featured-desc">Responsive navbar with dropdown for a swim school. Full page coming soon.</div>
-              <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag" style="background:#fff3e0;color:#bf7b3a;">🚧 In progress</span></div>
-            </div>
-          </div>
-          <button class="toggle-btn" onclick="toggleProject('swim-frame', this)">Open Project ↓</button>
-          <div id="swim-frame" class="project-frame-wrap">
-            <iframe src="https://stephanieperez1422.github.io/dream/" class="project-frame"></iframe>
-          </div>
-        </div>
-
       </div>
 
       <p class="section-label" style="margin-top:1rem;">BIS 23 · Assignments</p>
       <p class="section-hint">Click any assignment to expand it.</p>
       <div class="accordion-list">
-        <!-- Add BIS 23 assignments here. Template:
+
         <div class="accordion-item">
           <div class="accordion-header" onclick="toggleAccordion(this)">
-            <span>📝 Assignment Title</span>
+            <span>💻 Assignment 1 — Equipment Budget</span>
             <span class="acc-arrow">▾</span>
           </div>
           <div class="accordion-body">
-            <p>Your assignment description or content here.</p>
+            <p style="margin-top:0.65rem;">A breakdown of my ideal workstation setup — researched items with specs, costs, and personal reasons for each choice. Total budget ranges from ~$3,579 to $4,218.</p>
+            <p style="margin-top:0.6rem;"><span class="acc-subhead">Items</span></p>
+            <div class="items-grid">
+              <div class="item-card"><div class="item-icon">🍎</div><div class="item-name">MacBook Air M2</div><div class="item-price">$1,200</div></div>
+              <div class="item-card"><div class="item-icon">🎮</div><div class="item-name">Acer Nitro V 16S</div><div class="item-price">$1,149–$1,439</div></div>
+              <div class="item-card"><div class="item-icon">🖥️</div><div class="item-name">Samsung Odyssey OLED</div><div class="item-price">$799–$1,000</div></div>
+              <div class="item-card"><div class="item-icon">📱</div><div class="item-name">iPad 9th Gen</div><div class="item-price">$500</div></div>
+              <div class="item-card"><div class="item-icon">🪔</div><div class="item-name">Lava Lamp</div><div class="item-price">$30–$50</div></div>
+              <div class="item-card"><div class="item-icon">✏️</div><div class="item-name">Apple Pencil 1st Gen</div><div class="item-price">$100–$129</div></div>
+            </div>
+            <div class="card-tags" style="margin-top:0.85rem;">
+              <span class="ctag">Research</span><span class="ctag">Budget Planning</span><span class="ctag">BIS 23</span>
+            </div>
           </div>
         </div>
-        -->
-        <div class="coming-soon">
-          <div class="cs-icon">📝</div>
-          <h3>Assignments Coming Soon</h3>
-          <p>BIS 23 writing assignments will be added here.</p>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>🏊 Assignment 2 — Private Swim Lessons Booking Website (Proposal)</span>
+            <span class="acc-arrow">▾</span>
+          </div>
+          <div class="accordion-body">
+            <span class="shared-badge">BIS 23 &amp; BIS 31</span>
+            <p style="margin-top:0.65rem;">A proposal for a multi-page booking website where clients can view swim services, book private lessons, and send messages — all stored in a MySQL database via PHP.</p>
+            <p style="margin-top:0.6rem;"><span class="acc-subhead">Target Audience</span><br>Parents booking lessons for children · Adults seeking private swim training</p>
+            <p style="margin-top:0.6rem;"><span class="acc-subhead">Site Structure</span><br>Home → About · Services · Book a Lesson · Contact</p>
+            <p style="margin-top:0.6rem;"><span class="acc-subhead">Database Tables</span><br>services · bookings · messages</p>
+            <div class="card-tags" style="margin-top:0.85rem;">
+              <span class="ctag">PHP</span><span class="ctag">MySQL</span>
+              <span class="ctag">HTML/CSS</span><span class="ctag">Requirements Doc</span>
+            </div>
+          </div>
         </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>🐛 Assignment 3 — Debugging &amp; Pseudocoding</span>
+            <span class="acc-arrow">▾</span>
+          </div>
+          <div class="accordion-body">
+            <p style="margin-top:0.65rem;">Pseudocode is plain English logic written in a structured way — not real code. The goal was to read each script, identify the bugs, fix them, and draw a corrected flowchart showing the order of steps.</p>
+            <div class="concept-box">
+              <span class="acc-subhead">Flowchart shapes</span>
+              <div class="shapes-legend">
+                <div class="shape-demo"><div class="sh-oval">Start/Stop</div> Oval — begins &amp; ends every program</div>
+                <div class="shape-demo"><div class="sh-para"><span>Input/Output</span></div> Parallelogram — data going in or out</div>
+                <div class="shape-demo"><div class="sh-rect">Process</div> Rectangle — a calculation or action</div>
+              </div>
+            </div>
+            <div class="script-block">
+              <div class="script-header"><span class="script-title">DEBUG01-01 — Sale Price (10% off)</span><span class="bug-badge">3 bugs</span></div>
+              <div class="script-inner">
+                <div>
+                  <div class="bug-row"><span class="bug-label">Bug 1</span> Used <code>price</code> as the variable name but it was declared as <code>origPrice</code> — the program can't find a variable that doesn't exist.</div>
+                  <div class="bug-row"><span class="bug-label">Bug 2</span> Multiplied by <code>0.25</code> which is 25% — the problem says 10% off, so it should be <code>0.10</code>.</div>
+                  <div class="bug-row"><span class="bug-label">Bug 3</span> Typed <code>discnt</code> instead of <code>discount</code> — a typo means the variable is never found and the subtraction breaks.</div>
+                  <div class="acc-divider"></div>
+                  <div class="code-line">discount = origPrice × 0.10<br>finalPrice = origPrice − discount<br>output finalPrice</div>
+                </div>
+                <div class="flowchart"><div class="fc-oval">start</div><div class="fc-arrow">↓</div><div class="fc-para"><span>input origPrice</span></div><div class="fc-arrow">↓</div><div class="fc-rect">discount = origPrice × 0.10</div><div class="fc-arrow">↓</div><div class="fc-rect">finalPrice = origPrice − discount</div><div class="fc-arrow">↓</div><div class="fc-para"><span>output finalPrice</span></div><div class="fc-arrow">↓</div><div class="fc-oval">stop</div></div>
+              </div>
+            </div>
+            <div class="script-block">
+              <div class="script-header"><span class="script-title">DEBUG01-02 — Miles Per Gallon</span><span class="bug-badge">4 bugs</span></div>
+              <div class="script-inner">
+                <div>
+                  <div class="bug-row"><span class="bug-label">Bug 1</span> Used <code>+</code> (addition) instead of <code>÷</code> — miles per gallon is always miles divided by gallons, not added together.</div>
+                  <div class="bug-row"><span class="bug-label">Bug 2</span> Wrote <code>gallonsOfGas</code> — the variable declared at the top was <code>gallonsOfGasUsed</code>, so the calculation couldn't find it.</div>
+                  <div class="bug-row"><span class="bug-label">Bug 3</span> Output used <code>milsperGallon</code> — a typo of <code>milesPerGallon</code>, so nothing would actually display.</div>
+                  <div class="bug-row"><span class="bug-label">Bug 4</span> Last line said <code>start</code> again — every program must end with <code>stop</code>, not restart.</div>
+                  <div class="acc-divider"></div>
+                  <div class="code-line">milesPerGallon = milesTraveled ÷ gallonsOfGasUsed<br>output milesPerGallon</div>
+                </div>
+                <div class="flowchart"><div class="fc-oval">start</div><div class="fc-arrow">↓</div><div class="fc-para"><span>input milesTraveled</span></div><div class="fc-arrow">↓</div><div class="fc-para"><span>input gallonsOfGasUsed</span></div><div class="fc-arrow">↓</div><div class="fc-rect">mpg = miles ÷ gallons</div><div class="fc-arrow">↓</div><div class="fc-para"><span>output milesPerGallon</span></div><div class="fc-arrow">↓</div><div class="fc-oval">stop</div></div>
+              </div>
+            </div>
+            <div class="script-block">
+              <div class="script-header"><span class="script-title">DEBUG01-03 — Rent Per Day</span><span class="bug-badge">2 bugs</span></div>
+              <div class="script-inner">
+                <div>
+                  <div class="bug-row"><span class="bug-label">Bug 1</span> Divided rent by <code>31</code> — the problem clearly states a 30-day month, so using 31 gives the wrong daily cost.</div>
+                  <div class="bug-row"><span class="bug-label">Bug 2</span> Output was set to display <code>rent</code> — that's just the original number the user typed in, not the calculated result. It should output <code>costPerDay</code>.</div>
+                  <div class="acc-divider"></div>
+                  <div class="code-line">costPerDay = rent ÷ 30<br>output costPerDay</div>
+                </div>
+                <div class="flowchart"><div class="fc-oval">start</div><div class="fc-arrow">↓</div><div class="fc-para"><span>input rent</span></div><div class="fc-arrow">↓</div><div class="fc-rect">costPerDay = rent ÷ 30</div><div class="fc-arrow">↓</div><div class="fc-para"><span>output costPerDay</span></div><div class="fc-arrow">↓</div><div class="fc-oval">stop</div></div>
+              </div>
+            </div>
+            <div class="script-block">
+              <div class="script-header"><span class="script-title">MAINTENANCE01-01 — Discretionary Spending</span><span class="bug-badge">1 bug + modified</span></div>
+              <div class="script-inner">
+                <div>
+                  <div class="bug-row"><span class="bug-label">Bug</span> <code>utlilites</code> is a misspelling of <code>utilities</code> — the program tries to use a variable that was never declared, so the math breaks entirely.</div>
+                  <div class="bug-row"><span class="fix-label">Modified</span> The original only output <code>discretionary</code>. Added a <code>totalBills</code> calculation and also output <code>pay</code> and <code>totalBills</code> so the result is more complete.</div>
+                  <div class="acc-divider"></div>
+                  <div class="code-line">totalBills = rent + utilities + groceries<br>discretionary = pay − totalBills<br>output pay, totalBills, discretionary</div>
+                </div>
+                <div class="flowchart"><div class="fc-oval">start</div><div class="fc-arrow">↓</div><div class="fc-para"><span>input pay, rent, utilities, groceries</span></div><div class="fc-arrow">↓</div><div class="fc-rect">totalBills = rent + utilities + groceries</div><div class="fc-arrow">↓</div><div class="fc-rect">discretionary = pay − totalBills</div><div class="fc-arrow">↓</div><div class="fc-para"><span>output pay, totalBills, discretionary</span></div><div class="fc-arrow">↓</div><div class="fc-oval">stop</div></div>
+              </div>
+            </div>
+            <div class="card-tags" style="margin-top:0.85rem;">
+              <span class="ctag">Pseudocode</span><span class="ctag">Debugging</span><span class="ctag">Flowcharts</span><span class="ctag">BIS 23</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div><!-- /bis23-projects -->
@@ -312,37 +456,217 @@
       <p class="section-label" style="margin-top:1rem;">BIS 31 · Assignments</p>
       <p class="section-hint">Click any assignment to expand it.</p>
       <div class="accordion-list">
+
         <div class="accordion-item">
           <div class="accordion-header" onclick="toggleAccordion(this)">
-            <span>🗄️ Exercise 9 — PHP &amp; MySQL</span>
+            <span>🏊 Assignment 2 — Private Swim Lessons Booking Website (Proposal)</span>
             <span class="acc-arrow">▾</span>
           </div>
           <div class="accordion-body">
-            <p>Data-driven web form that collects name &amp; email and saves entries to a MySQL database via PHP. Includes client-side validation and phpMyAdmin proof.</p>
-            <div class="card-tags" style="margin-top:0.75rem;">
+            <span class="shared-badge">BIS 23 &amp; BIS 31</span>
+            <p style="margin-top:0.65rem;">A proposal for a multi-page booking website where clients can view swim services, book private lessons, and send messages — all stored in a MySQL database via PHP.</p>
+            <p style="margin-top:0.6rem;"><span class="acc-subhead">Target Audience</span><br>Parents booking lessons for children · Adults seeking private swim training</p>
+            <p style="margin-top:0.6rem;"><span class="acc-subhead">Site Structure</span><br>Home → About · Services · Book a Lesson · Contact</p>
+            <p style="margin-top:0.6rem;"><span class="acc-subhead">Database Tables</span><br>services · bookings · messages</p>
+            <div class="card-tags" style="margin-top:0.85rem;">
               <span class="ctag">PHP</span><span class="ctag">MySQL</span>
-              <span class="ctag">HTML/CSS</span><span class="ctag">JavaScript</span>
+              <span class="ctag">HTML/CSS</span><span class="ctag">Requirements Doc</span>
             </div>
-            <a class="clink" href="https://stephanieperez1422.github.io/exercise-9/" target="_blank" style="display:inline-block;margin-top:0.75rem;">View project ↗</a>
           </div>
         </div>
-        <!-- Add more BIS 31 assignments below as needed -->
+
+        <!-- Add more BIS 31 assignments here -->
       </div>
 
     </div><!-- /bis31-projects -->
 
-
-    <!-- FINAL -->
-    <div id="final" class="section-page">
-      <p class="section-label">Final Projects</p>
-      <div class="coming-soon">
-        <div class="cs-icon">🏆</div>
-        <h3>Final Projects Coming Soon</h3>
-        <p>Your BIS 23 and BIS 31 final projects will be linked here.</p>
-      </div>
-    </div>
-
   </div><!-- /wrapper -->
+
+    <!-- FINAL — Aqua Swim Lessons (full site inlined) -->
+    <div id="final" class="section-page section-page--fullframe">
+
+      <!-- Swim site nav -->
+      <nav class="swim-nav">
+        <a class="swim-logo" onclick="showSwim('shome')">
+          <div class="swim-logo-circle">🌊</div>
+          Aqua Swim
+        </a>
+        <ul class="swim-links">
+          <li><a onclick="showSwim('shome')" class="active" id="snav-home">Home</a></li>
+          <li><a onclick="showSwim('sabout')" id="snav-about">About</a></li>
+          <li><a onclick="showSwim('sservices')" id="snav-services">Services</a></li>
+          <li><a onclick="showSwim('sbook')" id="snav-book">Book a Lesson</a></li>
+          <li><a onclick="showSwim('scontact')" id="snav-contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- HOME -->
+      <div id="shome" class="swim-page active">
+        <div class="swim-hero">
+          <div class="swim-avatar">🏊</div>
+          <p class="swim-eyebrow">Private Instruction · New York City</p>
+          <h1 class="swim-title">Learn to Swim <em>with Confidence</em></h1>
+          <p class="swim-desc">One-on-one private swim lessons tailored to your pace, your goals, and your schedule. Beginner to advanced.</p>
+          <div class="swim-btns">
+            <button class="swim-btn-primary" onclick="showSwim('sbook')">Book a Lesson</button>
+            <button class="swim-btn-outline" onclick="showSwim('sservices')">View Services</button>
+          </div>
+        </div>
+        <div class="swim-feat-grid">
+          <div class="swim-glass swim-feat-card"><span class="swim-feat-icon">🏅</span><h3>Certified Instructor</h3><p>Trained in water safety, technique, and adaptive teaching for all skill levels.</p></div>
+          <div class="swim-glass swim-feat-card"><span class="swim-feat-icon">📅</span><h3>Flexible Scheduling</h3><p>Morning, afternoon, or evening — book lessons that fit your lifestyle.</p></div>
+          <div class="swim-glass swim-feat-card"><span class="swim-feat-icon">🎯</span><h3>Goal-Oriented</h3><p>Whether you want to overcome fear, build endurance, or compete — we get you there.</p></div>
+        </div>
+        <div class="swim-glass swim-cta-strip">
+          <p class="swim-section-label">Ready to start?</p>
+          <h2>Your first lesson is one click away.</h2>
+          <button class="swim-btn-primary" onclick="showSwim('sbook')">Book Now →</button>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div id="sabout" class="swim-page">
+        <div class="swim-page-hero"><p class="swim-section-label">About</p><h1>Meet Your Instructor</h1></div>
+        <div class="swim-content">
+          <div class="swim-glass" style="margin-bottom:1.25rem;">
+            <div class="swim-about-top">
+              <div class="swim-about-avatar-col">
+                <div class="swim-about-avatar">🏊</div>
+                <span class="swim-about-badge">Certified Instructor</span>
+              </div>
+              <div class="swim-about-text">
+                <h2>A lifelong passion for the water.</h2>
+                <p>Hi! I'm a certified swim instructor based in New York City with years of experience teaching students of all ages and skill levels — from complete beginners to competitive swimmers.</p>
+                <p>I believe swimming is more than a skill — it's confidence, safety, and freedom. My approach is calm, patient, and always personalized. No two swimmers are the same, so no two lessons are the same.</p>
+                <p>I currently work as a lifeguard at SportsPark on Roosevelt Island, giving me hands-on water safety experience every day.</p>
+                <div class="swim-stats">
+                  <div class="swim-stat"><span class="swim-stat-num">100+</span><span class="swim-stat-label">Students taught</span></div>
+                  <div class="swim-stat"><span class="swim-stat-num">All ages</span><span class="swim-stat-label">Kids to adults</span></div>
+                  <div class="swim-stat"><span class="swim-stat-num">3</span><span class="swim-stat-label">Skill levels</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swim-glass">
+            <p class="swim-section-label">Certifications &amp; Training</p>
+            <div class="swim-certs-list">
+              <span class="swim-cert-pill">🎓 Water Safety Instructor</span>
+              <span class="swim-cert-pill">💧 Lifeguard Certified</span>
+              <span class="swim-cert-pill">🏊 Swim Technique Training</span>
+              <span class="swim-cert-pill">🩹 CPR / First Aid</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div id="sservices" class="swim-page">
+        <div class="swim-page-hero"><p class="swim-section-label">Services</p><h1>Choose Your Level</h1><p>All lessons are private, one-on-one, and fully tailored to you.</p></div>
+        <div class="swim-content">
+          <div class="swim-svc-grid">
+            <div class="swim-glass swim-svc-card">
+              <div class="swim-svc-top"><span class="swim-svc-icon">🌱</span><span class="swim-svc-level">Level 01</span></div>
+              <div class="swim-svc-name">Beginner</div>
+              <p class="swim-svc-desc">Perfect for those with no experience or fear of the water. We start from zero — breathing, floating, and building trust at your own pace.</p>
+              <ul class="swim-svc-list"><li>Water comfort &amp; breath control</li><li>Floating &amp; kicking fundamentals</li><li>Basic freestyle introduction</li><li>Safety awareness</li></ul>
+              <div class="swim-svc-price"><span class="swim-price">$65</span><span class="swim-per">/ 45 min</span></div>
+              <button class="swim-btn-svc" onclick="showSwim('sbook')">Book This Level</button>
+            </div>
+            <div class="swim-glass swim-svc-card swim-svc-popular" style="position:relative;">
+              <span class="swim-popular-badge">Most Popular</span>
+              <div class="swim-svc-top"><span class="swim-svc-icon">🌊</span><span class="swim-svc-level">Level 02</span></div>
+              <div class="swim-svc-name">Intermediate</div>
+              <p class="swim-svc-desc">For swimmers who know the basics but want to improve form, speed, and endurance. We refine technique and introduce new strokes.</p>
+              <ul class="swim-svc-list"><li>Freestyle &amp; backstroke refinement</li><li>Breaststroke introduction</li><li>Flip turns &amp; wall push-offs</li><li>Lap endurance building</li></ul>
+              <div class="swim-svc-price"><span class="swim-price">$75</span><span class="swim-per">/ 45 min</span></div>
+              <button class="swim-btn-svc swim-btn-svc-featured" onclick="showSwim('sbook')">Book This Level</button>
+            </div>
+            <div class="swim-glass swim-svc-card">
+              <div class="swim-svc-top"><span class="swim-svc-icon">🏆</span><span class="swim-svc-level">Level 03</span></div>
+              <div class="swim-svc-name">Advanced</div>
+              <p class="swim-svc-desc">For experienced swimmers aiming to compete or master all four strokes. Focus on speed, efficiency, and advanced drills.</p>
+              <ul class="swim-svc-list"><li>All four competitive strokes</li><li>Race starts &amp; underwater technique</li><li>Speed &amp; interval training</li><li>Competition preparation</li></ul>
+              <div class="swim-svc-price"><span class="swim-price">$85</span><span class="swim-per">/ 60 min</span></div>
+              <button class="swim-btn-svc" onclick="showSwim('sbook')">Book This Level</button>
+            </div>
+          </div>
+          <div class="swim-glass swim-svc-note"><p>📦 <strong>Package deals available.</strong> Save 15% when you book 5 sessions or more. Ask about it when booking.</p></div>
+        </div>
+      </div>
+
+      <!-- BOOK -->
+      <div id="sbook" class="swim-page">
+        <div class="swim-page-hero"><p class="swim-section-label">Book a Lesson</p><h1>Reserve Your Spot</h1><p>Fill out the form below and I'll confirm your session within 24 hours.</p></div>
+        <div class="swim-content">
+          <div class="swim-glass">
+            <form class="swim-form" id="swim-booking-form" onsubmit="submitSwimBook(event)">
+              <div class="swim-form-row">
+                <div class="swim-fg"><label>Full Name</label><input type="text" placeholder="Jane Smith" required/></div>
+                <div class="swim-fg"><label>Email Address</label><input type="email" placeholder="jane@email.com" required/></div>
+              </div>
+              <div class="swim-form-row">
+                <div class="swim-fg"><label>Phone Number</label><input type="tel" placeholder="(555) 000-0000"/></div>
+                <div class="swim-fg"><label>Lesson Type</label>
+                  <select required>
+                    <option value="" disabled selected>Select a level</option>
+                    <option>Beginner — $65 / 45 min</option>
+                    <option>Intermediate — $75 / 45 min</option>
+                    <option>Advanced — $85 / 60 min</option>
+                  </select>
+                </div>
+              </div>
+              <div class="swim-form-row">
+                <div class="swim-fg"><label>Preferred Date</label><input type="date" required/></div>
+                <div class="swim-fg"><label>Preferred Time</label>
+                  <select required>
+                    <option value="" disabled selected>Select a time</option>
+                    <option>7:00 AM</option><option>8:00 AM</option><option>9:00 AM</option>
+                    <option>10:00 AM</option><option>11:00 AM</option><option>12:00 PM</option>
+                    <option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option>
+                    <option>4:00 PM</option><option>5:00 PM</option><option>6:00 PM</option>
+                  </select>
+                </div>
+              </div>
+              <div class="swim-fg"><label>Notes <span class="swim-optional">(optional)</span></label><textarea rows="3" placeholder="Any experience level details, special needs, or questions..."></textarea></div>
+              <button type="submit" class="swim-btn-submit">Request Booking →</button>
+            </form>
+            <div class="swim-success" id="swim-book-success"><span class="swim-success-icon">✅</span><h3>Booking request received!</h3><p>I'll reach out to confirm your session within 24 hours.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div id="scontact" class="swim-page">
+        <div class="swim-page-hero"><p class="swim-section-label">Contact</p><h1>Get in Touch</h1><p>Questions? Reach out and I'll get back to you as soon as possible.</p></div>
+        <div class="swim-content">
+          <div class="swim-contact-layout">
+            <div class="swim-glass swim-contact-info">
+              <div class="swim-contact-item"><span class="swim-contact-icon">📍</span><div><strong>Location</strong><p>Roosevelt Island, New York City</p></div></div>
+              <div class="swim-contact-item"><span class="swim-contact-icon">📧</span><div><strong>Email</strong><p>hello@aquaswimlessons.com</p></div></div>
+              <div class="swim-contact-item"><span class="swim-contact-icon">📱</span><div><strong>Phone</strong><p>(555) 123-4567</p></div></div>
+              <div class="swim-contact-item"><span class="swim-contact-icon">🕐</span><div><strong>Response Time</strong><p>Within 24 hours</p></div></div>
+            </div>
+            <div class="swim-glass">
+              <form class="swim-form" id="swim-contact-form" onsubmit="submitSwimContact(event)">
+                <div class="swim-fg"><label>Your Name</label><input type="text" placeholder="Jane Smith" required/></div>
+                <div class="swim-fg"><label>Email Address</label><input type="email" placeholder="jane@email.com" required/></div>
+                <div class="swim-fg"><label>Message</label><textarea rows="5" placeholder="What would you like to know?" required></textarea></div>
+                <button type="submit" class="swim-btn-submit">Send Message →</button>
+              </form>
+              <div class="swim-success" id="swim-contact-success"><span class="swim-success-icon">✅</span><h3>Message sent!</h3><p>I'll get back to you within 24 hours.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Swim footer -->
+      <footer class="swim-footer">
+        <span class="swim-footer-logo">🌊 Aqua Swim Lessons</span>
+        <p>Private Instruction · Roosevelt Island, New York City</p>
+        <p>© 2025 Aqua Swim Lessons · made with 🩷</p>
+      </footer>
+
+    </div><!-- /final -->
 
   <footer>made with love · stephanie's portfolio</footer>
   <script src="script.js"></script>
